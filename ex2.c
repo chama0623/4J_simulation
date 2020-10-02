@@ -20,7 +20,7 @@ double TrapezoidalRule(double a,double b,int n){
 
     double sum=0;
     for(double i=0;i<n;i++){
-        sum+=Trapezoidal(a+i/n,a+(i+1)/n);
+        sum+=Trapezoidal(a+i*(b/n),a+(i+1)*(b/n));
     }
     return sum;
 }
