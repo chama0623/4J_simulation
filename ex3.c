@@ -1,7 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<math.h>
-#define PI 3.141592
 
 double func(double x){
     return 4/(1+x*x);
@@ -48,7 +47,20 @@ double SimpsonRule(double a,double b,int n){
 }
 
 int main(int argc,char *argv[]){
-    printf("TrapezoidalRule : %1.16lf\n",TrapezoidalRule(0,1,8));
-    printf("SimpsonRule : %1.16lf\n",SimpsonRule(0,1,8));
+    // printf("TrapezoidalRule : %1.16lf\n",TrapezoidalRule(0,1,8));
+    // printf("SimpsonRule : %1.16lf\n",SimpsonRule(0,1,8));
+    printf("-----Trapesoidal Rule's result-----\n");
+    printf("n =  1  result = %.10lf  error = %.10lf\n",TrapezoidalRule(0,1,1),fabs(TrapezoidalRule(0,1,1)-M_PI));
+    printf("n =  2  result = %.10lf  error = %.10lf\n",TrapezoidalRule(0,1,2),fabs(TrapezoidalRule(0,1,2)-M_PI));
+    printf("n =  8  result = %.10lf  error = %.10lf\n",TrapezoidalRule(0,1,8),fabs(TrapezoidalRule(0,1,8)-M_PI));
+    printf("n = 16  result = %.10lf  error = %.10lf\n",TrapezoidalRule(0,1,16),fabs(TrapezoidalRule(0,1,16)-M_PI));
+    printf("n = 32  result = %.10lf  error = %.10lf\n",TrapezoidalRule(0,1,32),fabs(TrapezoidalRule(0,1,32)-M_PI));
+    printf("\n-----Simpson Rule's result-----\n");
+    printf("n =  1  result = %.10lf  error = %.10lf\n",SimpsonRule(0,1,1),fabs(SimpsonRule(0,1,1)-M_PI));
+    printf("n =  2  result = %.10lf  error = %.10lf\n",SimpsonRule(0,1,2),fabs(SimpsonRule(0,1,2)-M_PI));
+    printf("n =  8  result = %.10lf  error = %.10lf\n",SimpsonRule(0,1,8),fabs(SimpsonRule(0,1,8)-M_PI));
+    printf("n = 16  result = %.10lf  error = %.10lf\n",SimpsonRule(0,1,16),fabs(SimpsonRule(0,1,16)-M_PI));
+    printf("n = 32  result = %.10lf  error = %.10lf\n",SimpsonRule(0,1,32),fabs(SimpsonRule(0,1,32)-M_PI));
+
     return 0;
 }
