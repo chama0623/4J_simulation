@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-#define MAX_STEP 10
+#define MAX_STEP 20
 
 double func(double x,double y){
     return y;
@@ -61,7 +61,7 @@ double HeunCsv(double x0,double y0,double h){
 int main(int argc,char *argv[]){
     double x0 = 0;
     double y0 = 1;
-    double h = 0.1;
+    double h = 0.05;
     /*
     printf("-----setting-----\n");
     printf("h=%lf\nt=00   x=%lf,y=%lf\n",h,x0,y0);
