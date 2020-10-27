@@ -7,6 +7,8 @@
     \usepackage{here}
     \usepackage{url}
     \usepackage{listings, jlisting}
+    \usepackage{tikz}
+    \usetikzlibrary{intersections,calc,arrows}
     \renewcommand{\lstlistingname}{リスト}
 \lstset{language=c,
   basicstyle=\ttfamily\scriptsize,
@@ -93,6 +95,13 @@
     \subsection{プログラムの説明}
     本節では課題1で作成したプログラムおいて,次に示す4つの関数の役割および機能について説明する.なお数学における「関数」とプログラミング
     における「関数」の意味が混在することを防ぐため,数学における関数を「数学関数」,プログラミングにおける関数を「関数」と表記する.
+    \begin{enumerate}
+      \item func関数
+      \item Trapezoidal関数
+      \item TrapezoidalRule関数
+      \item main関数
+      \end{enumerate}
+    
     \subsubsection{func関数}
     func関数は数値計算を行う数学関数を定義する関数である.表\ref{func1table}にfunc関数の機能,引数,返り値の3つを示す.
     func関数は数学関数を定義する関数であるから,引数$x$(double型)について返り値$f(x)$を返す設計になっている.
@@ -117,7 +126,52 @@ double func(double x){
     \end{lstlisting}
 
     \subsubsection{Trapezoidal関数}
+    Trapezoidal関数は数学関数$f(x)$において,与えられた2点$a$,$b$における台形公式による数値積分を行う関数である.
+    2点$a$,$b$における$f(x)$の値は$f(a)$,$f(b)$であるから,$a$から$b$までの$f(x)$の積分は台形公式より式(\ref{simpleTrapezaidal})のように
+    近似できる.
+    \begin{equation}
+      \int_a^b f(x) dx \simeq \frac{b-a}{2}(f(a)+f(b))
+          \label{simpleTrapezaidal}
+        \end{equation}
+
+    表\ref{Trapezoidaltable}にTrapezoidal関数の機能,引数,返り値の3つを示す.Trapezoidal関数は2点$a$,$b$における台形公式による数値積分
+    を行う関数であるから,2点$a$,$b$を引数,数値積分の結果の返り値とする設計になっている.
+    \begin{figure}[H]
+      \centering
+    \begin{tikzpicture}
+ \draw[->,>=stealth,semithick] (-2,0)--(2,0)node[above]{$x$}; %x軸
+ \draw[->,>=stealth,semithick] (0,-1)--(0,3)node[right]{$y$}; %y軸
+ \draw (0,0)node[below right]{O}; %原点
+ \draw (-1,0)node[below]{$-1$}; %点(-1,0)
+ \draw (0,1)node[right]{$1$}; %点(0,1)
+ \draw[very thick,domain=-2:2] plot(\x,\x+1)node[right]{$y=x+1$};
+\end{tikzpicture}
+\caption{M1} \label{fig:M1}
+\end{figure}
+
+    \begin{table}[H]
+      \caption{Trapezoidal関数の機能,引数,返り値}
+      \label{Trapezoidaltable}
+      \begin{center}
+          \begin{tabular}{c|l}\hline
+        機能 & 2点$a$,$b$における台形公式による数値積分を返す.\\
+        引数 & double a,double b\\
+        返り値 & double型 \\ \hline
+          \end{tabular}
+      \end{center}
+      \end{table}
+
+      リスト\ref{Trapezoidal}にTrapezoidal関数のソースコードを示す.Trapezoidal関数は引数$a$,$b$について
+      式(\ref{simpleTrapezaidal})の計算結果を返す.
+      \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=Trapezoidal,caption=Trapezoidal関数]
+double Trapezoidal(double a,double b){
+    return (b-a)*(func(a)+func(b))/2;
+}
+            \end{lstlisting}
+
     \subsubsection{TrapezoidalRule関数}
+    TrapezoidalRule関数は区間[$a$,$b$]を$n$個に分割して,分割した区間のそれぞれに台形公式を適用する関数である.
+
     \subsubsection{main関数}
 
     \subsection{実行結果}
