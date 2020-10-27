@@ -32,6 +32,8 @@ int main(int argc,char *argv[]){
     for(int i=1;i<=n_max;i*=2){
         result = TrapezoidalRule(0,M_PI/6,i);
         printf("n =  %4d  result = %lf  error = %lf\n",i,result,fabs(result-ans));
+        // output format for csv
+        //printf("%d,%lf,%0.15lf\n",i,result,fabs(result-ans));
     }
     return 0;
 }
