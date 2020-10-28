@@ -1,5 +1,5 @@
-\documentclass[a4j]{jarticle}
-    \usepackage[dvipdfmx]{graphicx}
+\documentclass[dvipdfmx]{jarticle}
+    \usepackage{graphicx}
     \usepackage[ top=25truemm,bottom=37truemm,left=25truemm,right=25truemm]
     {geometry}
     \usepackage{ascmac}
@@ -136,18 +136,6 @@ double func(double x){
 
     表\ref{Trapezoidaltable}にTrapezoidal関数の機能,引数,返り値の3つを示す.Trapezoidal関数は2点$a$,$b$における台形公式による数値積分
     を行う関数であるから,2点$a$,$b$を引数,数値積分の結果の返り値とする設計になっている.
-    \begin{figure}[H]
-      \centering
-    \begin{tikzpicture}
- \draw[->,>=stealth,semithick] (-2,0)--(2,0)node[above]{$x$}; %x軸
- \draw[->,>=stealth,semithick] (0,-1)--(0,3)node[right]{$y$}; %y軸
- \draw (0,0)node[below right]{O}; %原点
- \draw (-1,0)node[below]{$-1$}; %点(-1,0)
- \draw (0,1)node[right]{$1$}; %点(0,1)
- \draw[very thick,domain=-2:2] plot(\x,\x+1)node[right]{$y=x+1$};
-\end{tikzpicture}
-\caption{M1} \label{fig:M1}
-\end{figure}
 
     \begin{table}[H]
       \caption{Trapezoidal関数の機能,引数,返り値}
@@ -171,10 +159,99 @@ double Trapezoidal(double a,double b){
 
     \subsubsection{TrapezoidalRule関数}
     TrapezoidalRule関数は区間[$a$,$b$]を$n$個に分割して,分割した区間のそれぞれに台形公式を適用する関数である.
+    図\ref{gtrap}にTrapezoidalRule関数の数値計算にイメージを示す.図\ref{gtrap}では数学関数$f(x)$について
+    区間[$a$,$b$]を$n$個に分割し,それぞれの$x$の値を$x_1$,$x_2$,$\dots$,$x_n$としている.区間[$x_i$,$x_{i+1}$]
+    における台形公式による数値積分はTrapezaoidal関数によって計算することができるから,求めたい積分は
+    すべての区間[$x_1$,$x_2$],[$x_2$,$x_3$],$\dots$,[$x_{n-1}$,$x_n$]についてTrapezaoidal関数を適用し,
+    この結果の和をとればよい.
+
+    \begin{figure}[H]
+      \centering
+    \begin{tikzpicture}
+      \path[draw,->,>=latex] (-0.5, 0) -- (5,0) node[above right] {\large $x$};
+      \path[draw,->,>=latex] (0, -0.5) -- (0,3) node[right=2mm] {\large $y$} ;
+      \path (0,0) node[above left] {$\mathrm{O}$};
+      \path[draw,domain=-0.5:5] plot (\x, {sqrt(\x+1)+0.5}) node[above right] {$y=f(x)$};
+      \draw [draw] (1,{sqrt(1+1)+0.5}) -- (1,0)node [below] {$a(x_1)$};
+      \draw [draw] (2,{sqrt(2+1)+0.5}) -- (2,0)node [below] {$x_2$};
+      \draw [draw] (3,0) -- (3,0)node [below] {$\dots$};
+      \draw [draw] (4,{sqrt(4+1)+0.5}) -- (4,0)node [below] {$b(x_n)$};
+      \draw [thick,latex-latex] (1,0.5) -- (2,0.5) node [above, midway] {$\frac{a+b}{n}$};
+\end{tikzpicture}
+\caption{合成台形公式のイメージ} 
+\label{gtrap}
+\end{figure}
+
+表\ref{TrapezoidalRuletable}にTrapezoidalRule関数の機能,引数,返り値の3つを示す.TrapezoidalRule関数は
+2点$a$,$b$を$n$分割したときの台形公式による数値積分を求める関数であるから,2点$a$,$b$および分割数$n$を引数,
+数値積分の結果を返り値とする設計になっている.
+
+\begin{table}[H]
+  \caption{TrapezoidalRule関数の機能,引数,返り値}
+  \label{TrapezoidalRuletable}
+  \begin{center}
+      \begin{tabular}{c|l}\hline
+    機能 & 2点$a$,$b$を$n$分割したときの台形公式による数値積分を返す.\\
+    引数 & double a,double b,int n\\
+    返り値 & double型 \\ \hline
+      \end{tabular}
+  \end{center}
+  \end{table}
+
+  リスト\ref{TrapezoidalRule}にTrapezoidalRule関数のソースコードを示す.リスト\ref{TrapezoidalRule}の2～5行目では分割数$n$が
+  不正な値(0や負)である場合にエラーを表示してプログラムを終了する処理を行ってる.ただし,exit関数を用いるためにはstdlib.hをincludeする必要が
+  ある.そして,リスト\ref{TrapezoidalRule}の7～11行目では区間[$a$,$b$]を$n$分割して,各区間にTrapezoidal関数を実行する処理を行っている.
+  結果はdouble型の引数sumに格納され,returnされる.
+      \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=TrapezoidalRule,caption=TrapezoidalRule関数]
+double TrapezoidalRule(double a,double b,int n){
+    if(n<=0){
+        printf("Incorrect value of n");
+        exit(0);
+    }
+
+    double sum=0;
+    for(double i=0;i<n;i++){
+        sum+=Trapezoidal(a+i*(b/n),a+(i+1)*(b/n));
+    }
+    return sum;
+}
+            \end{lstlisting}
 
     \subsubsection{main関数}
+    TrapezoidalRule関数を実行し,結果を表示する関数としてmain関数を作成する.リスト\ref{main1}にmain関数のソースコードを示す.
+    リスト\ref{main1}の2行目では分割数を1,2,4,$\dots$と細かくするときの上限を定義している.リスト\ref{main1}では
+    分割数の上限を256にしている.そして,リスト\ref{main1}の3行目では解析解を定義している.\\
+    　リスト\ref{main1}の5～11行目では分割数1,2,4,$\dots$,n\_maxについてTrapezoidalRule関数を用いて数学関数$f(x)$の数値積分を
+    行い,結果および解析解との誤差の絶対値を表示している.またコメントアウトしている10行目はCSV形式で計算結果を出力するための
+    フォーマットである.
+      \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=main1,caption=main1関数]
+int main(int argc,char *argv[]){
+    int n_max = 256;
+    double ans = logf(3)/2;
+
+    double result;
+    for(int i=1;i<=n_max;i*=2){
+        result = TrapezoidalRule(0,M_PI/6,i);
+        printf("n =  %4d  result = %lf  error = %lf\n",i,result,fabs(result-ans));
+        // output format for csv
+        //printf("%d,%lf,%0.15lf\n",i,result,fabs(result-ans));
+    }
+    return 0;
+}
+            \end{lstlisting}
 
     \subsection{実行結果}
+    図\ref{result1}に課題1のプログラムの実行結果を示す.図\ref{result1}について,分割数が1から256についてTrapezoidalRule関数
+    を実行できていることがわかる.TrapezoidalRule関数による数値積分の結果についても,解析解$\frac{1}{2} \log_{e} 3 = 0.5493061$
+    に十分近い値であることがわかる.解析解に収束する様子や誤差の考察については次節で行う.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[scale=0.9]{kadai1.png}
+      \caption{課題1の実行結果}
+       \label{result1}
+      \end{figure}
+
     \subsection{考察}
 
     \section{課題2}

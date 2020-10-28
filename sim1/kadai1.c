@@ -25,7 +25,7 @@ double TrapezoidalRule(double a,double b,int n){
 }
 
 int main(int argc,char *argv[]){
-    int n_max = 1024;
+    int n_max = 256;
     double ans = logf(3)/2;
 
     double result;
