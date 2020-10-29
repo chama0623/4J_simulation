@@ -8,6 +8,7 @@
     \usepackage{url}
     \usepackage{listings, jlisting}
     \usepackage{tikz}
+    \usepackage{cases}
     \usetikzlibrary{intersections,calc,arrows}
     \renewcommand{\lstlistingname}{リスト}
 \lstset{language=c,
@@ -46,7 +47,7 @@
 }
 
 \title{第1回～第5回}
-\date{実験日1　2020年7月15日 1～2コマ目}
+\date{提出期限　2020年11月19日}
 \department{組番号　408}
 \id{17406}
 \author{金澤雄大}
@@ -263,7 +264,7 @@ int main(int argc,char *argv[]){
       \int_0^\frac{\pi}{2} \sin x dx
           \label{kadai2siki}
         \end{equation}
-    数値積分については次の2点についてプログラムの作成および実行を行い結果を考察する.
+    数値積分は次の2点についてプログラムの作成および実行を行い結果を考察する.
     \begin{enumerate}
       \item float型とdouble型のそれぞれで数値積分を行い丸め誤差が現れる刻み幅$h$.
       \item 刻み幅を$\frac{1}{2}$倍ずつ変化させたときの誤差の減少.
@@ -293,7 +294,33 @@ double func(double x){
             \end{lstlisting}
 
     \subsubsection{Simpson関数}
-    Simpson関数は数学関数$f(x)$において与えられた2点$a$,$b$におけるシンプソン法による数値積分を
+    Simpson関数は数学関数$f(x)$において与えられた2点$a$,$b$におけるシンプソン法による数値積分を行う関数である.
+    $a$から$b$までの$f(x)$の積分はシンプソン法により式(\ref{simpleSimpson})のように近似できる.ただし,$h$は積分を行う
+    区間の幅である.すなわち$h=\frac{b-a}{2}$である.
+    \begin{equation}
+      \int_a^b f(x) dx \simeq \frac{h}{3} \left[ f(a)+4f \left( \frac{a+b}{2} \right) +f(b) \right] 
+          \label{simpleSimpson}
+        \end{equation}
+    　式(\ref{simpleSimpson})の意味について説明する.台形公式では2点$a$,$b$のおける$f(a)$,$f(b)$の値のみを用いて数値積分
+    を行っていた(式(\ref{simpleTrapezaidal}))がさらに精度を高めたい.そこで$a$,$b$の中点$\frac{a+b}{2}$の値を用いて2
+    次の近似を行う.3点における$f(x)$の値をそれぞれ$y_0,y_1,y_2$とする.このとき,$\frac{h}{2}$を基準とすると,3点は$(-h,y_0),(0,y_1),(h,y_2)$
+    と表せる.$f(x)$を近似する2次多項式$y=a+bx+cx^2$とおくと式(\ref{startr})～式(\ref{endr})の連立方程式が得られる.
+    \begin{numcases}
+      {}
+      \label{startr}
+      a-bh+ch^2= y_0 & \\
+      a = y_0 & \\
+      \label{betweenr}
+      a+bh+ch^2=y_2
+      \label{endr} 
+    \end{numcases}
+    　式(\ref{startr})$+$式(\ref{betweenr})$\times 4$+式(\ref{endr})を計算すると式(\ref{forsimp})が得られる.
+    \begin{eqnarray}
+      (a-bh+ch^2)+4a+(a+bh+ch^2) &=& y_0 +4y_1+y_2 \\
+      6a+2ch^2 &=& y_0 +4y_1+y_2 
+      \label{forsimp}
+    \end{eqnarray}
+
     \subsubsection{SimpsonRule関数}
     \subsubsection{main関数}
 
