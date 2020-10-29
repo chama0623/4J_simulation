@@ -93,7 +93,7 @@
     \end{equation}
 
     \subsection{プログラムの説明}
-    本節では課題1で作成したプログラムおいて,次に示す4つの関数の役割および機能について説明する.なお数学における「関数」とプログラミング
+    本節では課題1で作成したプログラムにおいて,次に示す4つの関数の役割および機能について説明する.なお数学における「関数」とプログラミング
     における「関数」の意味が混在することを防ぐため,数学における関数を「数学関数」,プログラミングにおける関数を「関数」と表記する.
     \begin{enumerate}
       \item func関数
@@ -253,11 +253,51 @@ int main(int argc,char *argv[]){
       \end{figure}
 
     \subsection{考察}
-
+    !
     \section{課題2}
     本章では課題2における課題内容,プログラムの説明,実験結果,考察の4つについて述べる.
     \subsection{課題内容}
+    課題2の課題内容はシンプソンの公式を用いて式(\ref{kadai2siki})の数値積分を行うものである.
+    解析解は$1$である.
+    \begin{equation}
+      \int_0^\frac{\pi}{2} \sin x dx
+          \label{kadai2siki}
+        \end{equation}
+    数値積分については次の2点についてプログラムの作成および実行を行い結果を考察する.
+    \begin{enumerate}
+      \item float型とdouble型のそれぞれで数値積分を行い丸め誤差が現れる刻み幅$h$.
+      \item 刻み幅を$\frac{1}{2}$倍ずつ変化させたときの誤差の減少.
+      \end{enumerate}
+
     \subsection{プログラムの説明}
+    本節では課題2で作成したプログラムにおいて,次に示す4つの関するの役割
+    および機能について説明する.なお,課題2ではdouble型およびfloat型のそれぞれで
+    数値積分を行う関数を作成したが,ここではdouble型のプログラムのみ説明する.float
+    型のプログラムについては,doubleの部分をfloatに変更すれば問題なく実行できる.
+    \begin{enumerate}
+      \item func関数
+      \item Simpson関数
+      \item SimpsonRule関数
+      \item main関数
+      \end{enumerate}
+    
+    \subsubsection{func関数}
+    func関数は課題1と同様に数値計算を行う数学関数を定義する関数である.
+    したがって関数の機能,引数,返り値は表\ref{func1table}と同じである.\\
+      リスト\ref{func2}にfunc関数のソースコードを示す.func関数は引数xについて積分を行う数学関数$f(x)=\sin x$
+      の値を返す.
+      \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=func2,caption=func関数]
+double func(double x){
+    return sin(x);
+} 
+            \end{lstlisting}
+
+    \subsubsection{Simpson関数}
+    Simpson関数は数学関数$f(x)$において与えられた2点$a$,$b$におけるシンプソン法による数値積分を
+    \subsubsection{SimpsonRule関数}
+    \subsubsection{main関数}
+
+
     \subsection{実行結果}
     \subsection{考察}
 
