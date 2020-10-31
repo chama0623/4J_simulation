@@ -49,7 +49,8 @@ double SimpsonRule(double a,double b,int n){
 }
 
 int main(int argc,char *argv[]){
-    for(int i=1; i<=1024; i*=2){
+    int n_max = 256;
+    for(int i=1; i<=n_max; i*=2){
         double result = SimpsonRule(0,M_PI/2,i);
         printf("split = %4d   result = %1.16lf   error = %1.16lf\n",i,result,fabs((double)1-result));
     }

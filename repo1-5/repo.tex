@@ -136,7 +136,7 @@ double func(double x){
         \end{equation}
 
     表\ref{Trapezoidaltable}にTrapezoidal関数の機能,引数,返り値の3つを示す.Trapezoidal関数は2点$a$,$b$における台形公式による数値積分
-    を行う関数であるから,2点$a$,$b$を引数,数値積分の結果の返り値とする設計になっている.
+    を行う関数であるから,2点$a$,$b$を引数,数値積分の結果を返り値とする設計になっている.
 
     \begin{table}[H]
       \caption{Trapezoidal関数の機能,引数,返り値}
@@ -255,6 +255,7 @@ int main(int argc,char *argv[]){
 
     \subsection{考察}
     !
+    
     \section{課題2}
     本章では課題2における課題内容,プログラムの説明,実験結果,考察の4つについて述べる.
     \subsection{課題内容}
@@ -314,16 +315,104 @@ double func(double x){
       a+bh+ch^2=y_2
       \label{endr} 
     \end{numcases}
-    　式(\ref{startr})$+$式(\ref{betweenr})$\times 4$+式(\ref{endr})を計算すると式(\ref{forsimp})が得られる.
+      式(\ref{startr})$+$式(\ref{betweenr})$\times 4$+式(\ref{endr})を計算すると式(\ref{forsimp})が得られる.これを
+      面積$S$の計算に用いることでシンプソン法の式(\ref{simpleSimpson})が得られる.
     \begin{eqnarray}
       (a-bh+ch^2)+4a+(a+bh+ch^2) &=& y_0 +4y_1+y_2 \\
       6a+2ch^2 &=& y_0 +4y_1+y_2 
       \label{forsimp}
     \end{eqnarray}
+    　求めたい面積$S$を2次多項式の近似で計算すると式(\ref{forsimp2})のようにシンプソン法の式(\ref{simpleSimpson})
+    が得られる.式(\ref{forsimp2})の計算において,式(\ref{tmp1})から式(\ref{forsimp2})の計算には式(\ref{forsimp})
+    を用いている.
+
+    \begin{eqnarray}
+      S &=& \int_{-h}^{h} (a+bx+cx^2) dx \\
+      &=& 2 \int_{0}^{h} (a+cx^2) dx \\
+      &=& 2 \left[ ax+\frac{cx^3}{3} \right]_0^h \\
+      &=& \frac{h}{3}(6a+2ch^2) \label{tmp1}\\
+      &=& \frac{h}{3} \left[ f(a)+4f \left( \frac{a+b}{2} \right) +f(b) \right] 
+      \label{forsimp2}
+    \end{eqnarray}
+    
+    表\ref{Simpsontable}にSimpson関数の機能,引数,返り値の3つを示す.Simpson関数は2点$a$,$b$における
+    シンプソン法による数値積分を行う関数であるから,2点$a$,$b$を引数,数値積分の結果を返り値とする設計になっている.
+    \begin{table}[H]
+      \caption{Simpson関数の機能,引数,返り値}
+      \label{SimpsonTtable}
+      \begin{center}
+          \begin{tabular}{c|l}\hline
+        機能 & 2点$a$,$b$におけるシンプソン法による数値積分を返す.\\
+        引数 & double a,double b\\
+        返り値 & double型 \\ \hline
+          \end{tabular}
+      \end{center}
+      \end{table}
+
+      リスト\ref{Simpson}にSimpson関数のソースコードを示す.Simpson関数は引数$a$,$b$について式(\ref{simpleSimpson})
+      の計算結果を返す.
+      \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=Simpson,caption=Simpson関数]
+double Simpson(double a,double b){
+    double h = (b-a)/2;
+    double c = (a+b)/2;
+    return h*(func(a)+4*func(c)+func(b))/3;
+}
+      \end{lstlisting}
 
     \subsubsection{SimpsonRule関数}
-    \subsubsection{main関数}
+    SimpsonRule関数は区間[$a$,$b$]を$n$個に分割して,分割した区間のそれぞれにシンプソン法による数値積分を適用する関数である．
+    区間を分割して積分を行うイメージとしてはTrapezoidalRule関数と同様である.\\
 
+    　表\ref{SimpsonRuletable}にSimpsonRule関数の機能,引数,返り値の3つを示す.SimpsonRule関数は
+    2点$a$,$b$を$n$分割したときのシンプソン法による数値積分を求める関数であるから,2点$a$,$b$および分割数$n$を引数,
+    数値積分の結果を返り値とする設計になっている.
+
+    \begin{table}[H]
+      \caption{SimpsonRule関数の機能,引数,返り値}
+      \label{SimpsonRuleTtable}
+      \begin{center}
+          \begin{tabular}{c|l}\hline
+        機能 & 2点$a$,$b$を$n$分割したときのシンプソン法による数値積分を返す.\\
+        引数 & double a,double b,int n\\
+        返り値 & double型 \\ \hline
+          \end{tabular}
+      \end{center}
+      \end{table}
+
+      リスト\ref{SimpsonRule}にSimpsonRule関数のソースコードを示す.
+      リスト\ref{SimpsonRule}の2～5行目では分割数$n$が不正な値(0や負)である場合にエラーを表示してプログラムを終了する処理を行ってる.
+      そして,リスト\ref{SimpsonRule}の6～11行目では区間[$a$,$b$]を$n$分割して,各区間にSimpson関数を実行する処理を行っている.結果はdouble型の引数sumに格納され,returnされる.
+      \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=SimpsonRule,caption=SimpsonRule関数]
+double SimpsonRule(double a,double b,int n){
+    if(n<=0){
+        printf("Incorrect value of n");
+        exit(0);
+    }
+    double sum=0;
+    for(double i=0;i<n;i++){
+        sum+=Simpson(a+i*(b/n),a+(i+1)*(b/n));
+    }
+    return sum;
+}
+            \end{lstlisting}
+
+    \subsubsection{main関数}
+    SimpsonRule関数を実行し,結果を表示する関数としてmain関数を作成する.リスト\ref{main2}にmain関数のソースコードを示す.
+    リスト\ref{main2}の2行目では分割数を1,2,4,$\dots$と細かくするときの上限を定義している.リスト\ref{main2}では
+    分割数の上限を256にしている.
+    　リスト\ref{main2}の3～7行目では分割数1,2,4,$\dots$,n\_maxについてSimpsonlRule関数を用いて数学関数$f(x)$の数値積分を
+    行い,結果および解析解との誤差の絶対値を表示している.ただし解析解3.141592はオブジェクト形式マクロで定義している.
+      \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=main2,caption=main2関数]
+int main(int argc,char *argv[]){
+    int n_max = 256;
+    for(int i=1; i<=n_max; i*=2){
+        double result = SimpsonRule(0,M_PI/2,i);
+        printf("split = %4d   result = %1.16lf   error = %1.16lf\n",
+        i,result,fabs((double)1-result));
+    }
+    return 0;
+}
+            \end{lstlisting}
 
     \subsection{実行結果}
     \subsection{考察}

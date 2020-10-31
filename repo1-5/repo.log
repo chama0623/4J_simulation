@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.euc) (TeX Live 2019/Debian) (preloaded format=platex 2020.10.18)  30 OCT 2020 07:57
+This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.euc) (TeX Live 2019/Debian) (preloaded format=platex 2020.10.18)  31 OCT 2020 18:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -570,18 +570,30 @@ LaTeX Font Warning: Font shape `JY1/mc/m/it' undefined
 
 File: kadai1.png Graphic file (type bmp)
 <kadai1.png>
-[4] [5] [6] [7] (./repo.aux)
+[4] [5]
+
+LaTeX Warning: Reference `Simpsontable' on page 6 undefined on input line 338.
+
+[6]
+
+LaTeX Warning: Reference `SimpsonRuletable' on page 7 undefined on input line 3
+66.
+
+[7] [8] (./repo.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: There were undefined references.
+
  ) 
 Here is how much of TeX's memory you used:
- 15052 strings out of 482863
- 299065 string characters out of 5959217
- 713339 words of memory out of 5000000
- 30118 multiletter control sequences out of 15000+600000
+ 15069 strings out of 482863
+ 299256 string characters out of 5959217
+ 718340 words of memory out of 5000000
+ 30135 multiletter control sequences out of 15000+600000
  545185 words of font info for 76 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
- 60i,9n,68p,407b,1274s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,10n,68p,407b,1274s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on repo.dvi (8 pages, 34208 bytes).
+Output written on repo.dvi (9 pages, 44868 bytes).
