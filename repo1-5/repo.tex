@@ -242,7 +242,7 @@ int main(int argc,char *argv[]){
             \end{lstlisting}
 
     \subsection{実行結果}
-    図\ref{result1}に課題1のプログラムの実行結果を示す.図\ref{result1}について,分割数が1から256についてTrapezoidalRule関数
+    図\ref{result1}に課題1のプログラムの実行結果を示す.図\ref{result1}において,分割数が1から256についてTrapezoidalRule関数
     を実行できていることがわかる.TrapezoidalRule関数による数値積分の結果についても,解析解$\frac{1}{2} \log_{e} 3 = 0.5493061$
     に十分近い値であることがわかる.解析解に収束する様子や誤差の考察については次節で行う.
 
@@ -362,7 +362,6 @@ double Simpson(double a,double b){
     \subsubsection{SimpsonRule関数}
     SimpsonRule関数は区間[$a$,$b$]を$n$個に分割して,分割した区間のそれぞれにシンプソン法による数値積分を適用する関数である．
     区間を分割して積分を行うイメージとしてはTrapezoidalRule関数と同様である.\\
-
     　表\ref{SimpsonRuletable}にSimpsonRule関数の機能,引数,返り値の3つを示す.SimpsonRule関数は
     2点$a$,$b$を$n$分割したときのシンプソン法による数値積分を求める関数であるから,2点$a$,$b$および分割数$n$を引数,
     数値積分の結果を返り値とする設計になっている.
@@ -401,7 +400,7 @@ double SimpsonRule(double a,double b,int n){
     リスト\ref{main2}の2行目では分割数を1,2,4,$\dots$と細かくするときの上限を定義している.リスト\ref{main2}では
     分割数の上限を256にしている.
     　リスト\ref{main2}の3～7行目では分割数1,2,4,$\dots$,n\_maxについてSimpsonlRule関数を用いて数学関数$f(x)$の数値積分を
-    行い,結果および解析解との誤差の絶対値を表示している.ただし解析解3.141592はオブジェクト形式マクロで定義している.
+    行い,結果(少数以下16桁)および解析解との誤差の絶対値を表示している.ただし解析解3.141592はオブジェクト形式マクロで定義している.
       \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=main2,caption=main2関数]
 int main(int argc,char *argv[]){
     int n_max = 256;
@@ -412,9 +411,26 @@ int main(int argc,char *argv[]){
     }
     return 0;
 }
-            \end{lstlisting}
+    \end{lstlisting}
 
     \subsection{実行結果}
+    図\ref{kadai2d}に課題2のプログラムのdouble型における実行結果,図\ref{kadai2f}にfloat型における実行結果を示す.
+    図\ref{kadai2d}および図\ref{kadai2f}において分割数1から256についてSimpsonRule関数を実行できていることがわかる.
+    どちらの実行結果においても数値積分の結果が1に収束していることが読み取れる.解析解に収束する様子や誤差の考察は次節で行う.
+    \begin{figure}[H]
+      \centering
+      \includegraphics[scale=0.9]{kadai2double.png}
+      \caption{課題2の実行結果(double型)}
+       \label{result2d}
+      \end{figure}
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.9]{kadai2float.png}
+        \caption{課題2の実行結果(float型)}
+         \label{result2f}
+        \end{figure}
+
     \subsection{考察}
 
     \section{課題3}

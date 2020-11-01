@@ -49,7 +49,7 @@ float SimpsonRule(float a,float b,int n){
 }
 
 int main(int argc,char *argv[]){
-    for(int i=1; i<=1024; i*=2){
+    for(int i=1; i<=256; i*=2){
         float result = SimpsonRule(0,M_PI/2,i);
         printf("split =%4d   result = %1.14f   error = %1.14f\n",i,result,fabs(1-result));
     }
