@@ -12,7 +12,7 @@ void Euler(double x0,double y0,double h){
     for(int i=0;i<MAX_STEP;i++){
         xp = x+h;
         yp = y+h*func(x,y);
-        printf(" t=%02d   x=%lf,y=%lf\n",i+1,xp,yp);
+        printf(" t=%02d   x=%lf,y=%0.16lf\n",i+1,xp,yp);
         x=xp;
         y=yp;
     }
@@ -24,7 +24,7 @@ double EulerCsv(double x0,double y0,double h){
     for(int i=0;i<MAX_STEP;i++){
         xp = x+h;
         yp = y+h*func(x,y);
-        printf("%d,%lf,%lf\n",i+1,xp,yp);
+        printf("%d,%lf,%0.16lf\n",i+1,xp,yp);
         x=xp;
         y=yp;
     }
@@ -38,7 +38,7 @@ void Heun(double x0,double y0,double h){
         k1 = h*func(x,y);
         k2 = h*func(x+h,y+k1);
         yp = y+(k1+k2)/2;
-        printf(" t=%02d   x=%lf,y=%lf\n",i+1,xp,yp);
+        printf(" t=%02d   x=%lf,y=%0.16lf\n",i+1,xp,yp);
         x=xp;
         y=yp;
     }
@@ -52,7 +52,7 @@ double HeunCsv(double x0,double y0,double h){
         k1 = h*func(x,y);
         k2 = h*func(x+h,y+k1);
         yp = y+(k1+k2)/2;
-        printf("%d,%lf,%lf\n",i+1,xp,yp);
+        printf("%d,%lf,%0.16lf\n",i+1,xp,yp);
         x=xp;
         y=yp;
     }
@@ -68,7 +68,7 @@ void RK(double x0,double y0,double h){
         k3 = h*func(x+h/2,y+k2/2);
         k4 = h*func(x+h,y+k3);
         yp = y+(k1+2*k2+2*k3+k4)/6;
-        printf(" t=%02d   x=%lf,y=%lf\n",i+1,xp,yp);
+        printf(" t=%02d   x=%lf,y=%0.16lf\n",i+1,xp,yp);
         /* print k1,k2,k3,k4
         printf("k1=%lf\n",k1);
         printf("k2=%lf\n",k2);
@@ -90,7 +90,7 @@ double RKCsv(double x0,double y0,double h){
         k3 = h*func(x+h/2,y+k2/2);
         k4 = h*func(x+h,y+k3);
         yp = y+(k1+2*k2+2*k3+k4)/6;
-        printf("%d,%lf,%lf\n",i+1,xp,yp);
+        printf("%d,%lf,%0.16lf\n",i+1,xp,yp);
         x=xp;
         y=yp;
     }
@@ -101,7 +101,7 @@ int main(int argc,char *argv[]){
     double y0 = 1;
     double h = 0.5;
 
-    /* format for stdout
+    /* format for stdout 
     printf("\n");
     printf(" -----setting-----\n");
     printf(" h=%lf\n t=00   x=%lf,y=%lf\n",h,x0,y0);
@@ -113,8 +113,9 @@ int main(int argc,char *argv[]){
     RK(x0,y0,h);
     printf("\n");
     */
+    
 
-    /* format for csv 
+    /* format for csv */
     printf("\n-----Euler method-----\n");
     printf("0,%lf,%lf\n",x0,y0);
     EulerCsv(x0,y0,h);
@@ -124,7 +125,7 @@ int main(int argc,char *argv[]){
     HeunCsv(x0,y0,h);
 
     printf("\n-----Runge-kutta method-----\n");
-    */
+    
     printf("0,%lf,%lf\n",x0,y0);
     RKCsv(x0,y0,h);
     
