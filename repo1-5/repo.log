@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.euc) (TeX Live 2019/Debian) (preloaded format=platex 2020.10.18)  3 NOV 2020 09:46
+This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.euc) (TeX Live 2019/Debian) (preloaded format=platex 2020.10.18)  3 NOV 2020 18:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -444,7 +444,14 @@ File: l3backend-dvipdfmx.def 2020-02-03 L3 backend support: dvipdfmx
 \l__pdf_internal_box=\box87
 \g__pdf_backend_object_int=\count280
 \g__pdf_backend_annotation_int=\count281
-) (./repo.aux)
+) (./repo.aux
+
+LaTeX Warning: Label `eulersiki1' multiply defined.
+
+
+LaTeX Warning: Label `eulersiki1' multiply defined.
+
+)
 \openout1 = `repo.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
@@ -588,21 +595,32 @@ File: kadai2double.png Graphic file (type bmp)
 <kadai2double.png>
 File: kadai2float.png Graphic file (type bmp)
 <kadai2float.png>
-[9] [10] [11] (./repo.aux)
+[9] [10] [11] [12] [13] [14] [15]
+File: kadai3.png Graphic file (type bmp)
+<kadai3.png>
+[16]
+File: kadai4.png Graphic file (type bmp)
+<kadai4.png>
+File: kadai5.png Graphic file (type bmp)
+<kadai5.png>
+[17] [18] [19] (./repo.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 15090 strings out of 482863
- 299598 string characters out of 5959217
- 715340 words of memory out of 5000000
- 30150 multiletter control sequences out of 15000+600000
+ 15156 strings out of 482863
+ 300278 string characters out of 5959217
+ 734340 words of memory out of 5000000
+ 30210 multiletter control sequences out of 15000+600000
  545520 words of font info for 77 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
- 60i,10n,68p,407b,1759s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,11n,68p,407b,1759s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on repo.dvi (12 pages, 55840 bytes).
+Output written on repo.dvi (20 pages, 97408 bytes).

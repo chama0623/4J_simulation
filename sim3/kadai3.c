@@ -6,7 +6,7 @@ double func(double x,double y){
     return y;
 }
 
-double Euler(double x0,double y0,double h){
+void Euler(double x0,double y0,double h){
     double x=x0,y=y0;
     double xp,yp;
     for(int i=0;i<MAX_STEP;i++){
