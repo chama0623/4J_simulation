@@ -49,10 +49,12 @@ double SimpsonRule(double a,double b,int n){
 }
 
 int main(int argc,char *argv[]){
-    int n_max = 256;
+    int n_max = 65536;
+    printf("\n");
     for(int i=1; i<=n_max; i*=2){
         double result = SimpsonRule(0,M_PI/2,i);
-        printf("split = %4d   result = %1.16lf   error = %1.16lf\n",i,result,fabs((double)1-result));
+        printf(" split = %5d   result = %1.16lf   error = %1.16lf\n",i,result,fabs((double)1-result));
     }
+    printf("\n");
     return 0;
 }

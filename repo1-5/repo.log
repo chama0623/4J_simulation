@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.euc) (TeX Live 2019/Debian) (preloaded format=platex 2020.10.18)  1 NOV 2020 21:17
+This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.euc) (TeX Live 2019/Debian) (preloaded format=platex 2020.10.18)  3 NOV 2020 09:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -569,7 +569,7 @@ LaTeX Font Warning: Font shape `JY1/mc/m/it' undefined
 (Font)              using `JY1/mc/m/n' instead on input line 237.
 
 
-Overfull \hbox (1.50618pt too wide) in paragraph at lines 245--247
+Overfull \hbox (1.50618pt too wide) in paragraph at lines 245--249
 []\JY1/mc/m/n/10 図 \OT1/cmr/m/n/10 2 \JY1/mc/m/n/10 に課題 \OT1/cmr/m/n/10 1 \
 JY1/mc/m/n/10 のプログラムの実行結果を示す\OT1/cmr/m/n/10 .Trape-zoidal-Rule \J
 Y1/mc/m/n/10 関数による数値積分の結果は解析解 $[] [][] \OT1/cmr/m/n/10 3 =
@@ -581,27 +581,14 @@ File: kadai1.eps Graphic file (type eps)
 <kadai1.eps>
 [4] [5] [6]
 
-LaTeX Warning: Reference `Simpsontable' on page 7 undefined on input line 364.
+LaTeX Warning: Reference `Simpsontable' on page 7 undefined on input line 389.
 
-[7]
-
-LaTeX Warning: Reference `kadai2d' on page 8 undefined on input line 443.
-
-
-LaTeX Warning: Reference `kadai2f' on page 8 undefined on input line 443.
-
-
-LaTeX Warning: Reference `kadai2d' on page 8 undefined on input line 444.
-
-
-LaTeX Warning: Reference `kadai2f' on page 8 undefined on input line 444.
-
+[7] [8]
 File: kadai2double.png Graphic file (type bmp)
 <kadai2double.png>
-[8]
 File: kadai2float.png Graphic file (type bmp)
 <kadai2float.png>
-[9] [10] (./repo.aux)
+[9] [10] [11] (./repo.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -610,12 +597,12 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 15087 strings out of 482863
- 299562 string characters out of 5959217
- 718340 words of memory out of 5000000
- 30148 multiletter control sequences out of 15000+600000
- 545185 words of font info for 76 fonts, out of 8000000 for 9000
+ 15090 strings out of 482863
+ 299598 string characters out of 5959217
+ 715340 words of memory out of 5000000
+ 30150 multiletter control sequences out of 15000+600000
+ 545520 words of font info for 77 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
- 60i,10n,68p,407b,1274s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,10n,68p,407b,1759s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on repo.dvi (11 pages, 50720 bytes).
+Output written on repo.dvi (12 pages, 55840 bytes).
