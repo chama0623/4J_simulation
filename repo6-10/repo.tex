@@ -1,0 +1,84 @@
+\documentclass[a4j]{jarticle}
+    \usepackage[dvipdfmx]{graphicx}
+    \usepackage[ top=25truemm,bottom=25truemm,left=25truemm,right=25truemm]
+    {geometry}
+    \usepackage{ascmac}
+    \usepackage{array}
+    \usepackage{here}
+    \usepackage{url}
+    \usepackage{listings, jlisting}
+    \renewcommand{\lstlistingname}{リスト}
+\lstset{language=c,
+  basicstyle=\ttfamily\scriptsize,
+  commentstyle=\textit,
+  classoffset=1,
+  keywordstyle=\bfseries,
+  frame=tRBl,
+  framesep=5pt,
+  showstringspaces=false,
+  numbers=left,
+  stepnumber=1,
+  numberstyle=\tiny,
+  tabsize=4
+}
+
+\makeatletter
+\def\@thesis{シミュレーション レポート}
+\def\id#1{\def\@id{#1}}
+\def\department#1{\def\@department{#1}}
+
+\def\@maketitle{
+\begin{center}
+{\huge \@thesis \par} %修士論文と記載される部分
+\vspace{10mm}
+{\LARGE\bf \@title \par}% 論文のタイトル部分
+\vspace{10mm}
+{\Large \@date\par}	% 提出年月日部分
+\vspace{20mm}
+{\Large \@department \par}	% 所属部分
+{\Large 学籍番号　\@id \par}	% 学籍番号部分
+\vspace{10mm}
+{\Large 氏名　\@author}% 氏名 
+\end{center}
+\par\vskip 1.5em
+}
+
+\title{第6回～第10回}
+\date{提出日　2020年7月15日 1～2コマ目}
+\department{組番号　408}
+\id{17406}
+\author{金澤雄大}
+
+    \begin{document}
+    \maketitle
+    \thispagestyle{empty}
+    \clearpage
+    \addtocounter{page}{-1}
+    \section{目的}
+
+    \section{実験環境}
+      実験環境を表\ref{env}に示す.gccはWindows上のWSL(Windows Subsystem for Linux)で動作するものを用いる.
+      \begin{table}[H]
+        \caption{実験環境}
+      \label{env}
+      \begin{center}
+          \begin{tabular}{c|l}\hline
+            CPU & AMD Ryzen 5 3600 6-Core Processor \\ 
+            メモリ & 16.0GB DDR4 \\
+            OS & Microsoft Windows 10 Home \\
+            gcc & (Ubuntu 9.3.0-17ubuntu1～20.04) 9.3.0 \\
+            Make & GNU Make 4.2.1 \\ \hline
+          \end{tabular}
+      \end{center}
+      \end{table}
+
+      \section{課題6}
+      本章では課題6における課題内容,プログラムの説明,実験結果,考察の4つについて述べる.
+      \subsection{課題内容}
+      
+
+        \begin{thebibliography}{9}
+          \bibitem{NNCT}  国立高専機構長野高専,\url{http://www.nagano-nct.ac.jp/} ,閲覧日2020年8月5日
+          \end{thebibliography}
+\end{document}
+
