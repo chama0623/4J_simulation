@@ -3,10 +3,12 @@
     \usepackage[ top=25truemm,bottom=25truemm,left=25truemm,right=25truemm]
     {geometry}
     \usepackage{ascmac}
+    \usepackage{amsmath}
     \usepackage{array}
     \usepackage{here}
     \usepackage{url}
     \usepackage{listings, jlisting}
+    \usepackage{cases}
     \renewcommand{\lstlistingname}{リスト}
 \lstset{language=c,
   basicstyle=\ttfamily\scriptsize,
@@ -73,9 +75,223 @@
       \end{table}
 
       \section{課題6}
-      本章では課題6における課題内容,プログラムの説明,実験結果,考察の4つについて述べる.
+      本章では課題6における課題内容,プログラムの説明,実行結果,考察の4つについて述べる.
       \subsection{課題内容}
-      
+      式(\ref{rotoka})の方程式はロトカ・ヴォルテラの方程式と呼ばれる微分方程式である.ロトカ・ヴォルテラの方程式は2種類の生物の個体数の変化に関する数理モデルである.
+      式(\ref{rotoka})は被食者(食べられる側)の個体数$y_1$,捕食者(食べる側)の個体数$y_2$としたときの個体数の変化を表している
+      .本課題では式(\ref{rotoka})をオイラー法で実装し,正の実数定数$a$,$b$,$c$,$d$を変化させたときの解の特徴について考察する.
+      \begin{eqnarray}
+      \begin{cases}
+        \frac{dy_1}{dx} = ay_1-cy_1y_2 & \\
+        \frac{dy_2}{dx} = -by_1+dy_1y_2 &
+      \end{cases}
+      \label{rotoka}
+    \end{eqnarray}
+
+      \subsection{プログラムの説明}
+      本節では実装のための理論および次に示す6つの関数の機能,およびソースコードについて説明する.
+      \begin{enumerate}
+        \item multipleMatrix関数
+        \item addVector関数
+        \item scalerVector関数
+        \item transformVector関数
+        \item setVector関数
+        \item main関数
+      \end{enumerate}
+
+      \subsubsection{実装のための理論}
+      本項では,はじめに2変数の単純な連立微分方程式について考え,一般変数に理論を拡張する.
+      はじめに2変数の単純な連立方程式について考える.式(\ref{linear_case})の微分方程式をオイラー法で
+      解く方法を考える.ただし,$a$に添え字がついているものはすべて定数である.注目してほしいのは右辺で,$y_1$,$y_2$の一次式になっていることがわかる.
+
+      \begin{eqnarray}
+      \begin{cases}
+        \frac{dy_1}{dx} = a_{11} + a_{12} y_1 + a_{13} y_2 & \\
+        \frac{dy_2}{dx} = a_{21} + a_{22} y_1 + a_{23} y_2 &
+      \end{cases}
+      \label{linear_case}
+    \end{eqnarray}      
+
+    　オイラー法を用いると式(\ref{linear_case})は時間$t+1$のとき式(\ref{linear_case_euler})のように近似できる.
+    ただし,$h$は刻み幅とする.
+    \begin{eqnarray}
+      \begin{cases}
+        y_1(t+1) = y_1(t) + h(a_{11} + a_{12} y_1(t) + a_{13} y_2(t)) & \\
+        y_2(t+1) = y_2(t) + h(a_{21} + a_{22} y_1(t) + a_{23} y_2(t)) &
+      \end{cases}
+      \label{linear_case_euler}
+    \end{eqnarray}      
+    
+    式(\ref{linear_case_euler})を実装すれば2変数の場合には問題なく実行できる.しかし,これを3変数,4変数と拡張しようとすると
+    C言語では不都合が生じる.例えば式(\ref{linear_case})の右辺を関数として実装した場合,
+    変数が増えるごとに関数の数が増えてしまい拡張性やメンテナンス性が悪い.このため式(\ref{linear_case_euler})では一般変数に対応できない.
+    そこで行列を用いる.式(\ref{linear_case_euler})を行列を用いて表すと式(\ref{linear_case_mat})のようになる.
+    \begin{eqnarray}
+        \left(
+          \begin{array}{c}
+            y_1(t+1)  \\
+            y_2(t+1)  
+          \end{array}
+        \right)
+      =
+        \left(
+          \begin{array}{ccc}
+            y_1(t) \\
+            y_2(t) 
+          \end{array}
+        \right)
+        +
+        h\left(
+          \begin{array}{ccc}
+            a_{11} & a_{12} & a_{13} \\
+            a_{21} & a_{22} & a_{23}
+          \end{array}
+        \right)
+        \left(
+          \begin{array}{ccc}
+            1 \\
+            y_1(t) \\
+            y_2(t)
+          \end{array}
+        \right)
+      \label{linear_case_mat}
+    \end{eqnarray}
+
+    　式(\ref{linear_case_mat})を参考にして,一般に$y_1$,$y_2$...$y_n$のn個の連立微分方程式(式\ref{linear_case_n})があるとき,
+    オイラー法による数値解は式(\ref{linear_case_mat_n})の行列を用いることで計算できる.本課題では式(\ref{linear_case_mat_n})を実装する.
+    \begin{eqnarray}
+      \begin{cases}
+        \frac{dy_1}{dx} = a_{11} + a_{12} y_1 + a_{13} y_2 + \cdots + a_{1n+1} y_n & \\
+        \frac{dy_2}{dx} = a_{21} + a_{22} y_1 + a_{23} y_2 + \cdots + a_{2n+1} y_n & \\
+        　　　　 \vdots & \\
+        \frac{dy_n}{dx} = a_{n1} + a_{n2} y_1 + a_{n3} y_2 + \cdots + a_{nn+1} y_n
+      \end{cases}
+      \label{linear_case_n}
+    \end{eqnarray}      
+
+    \begin{eqnarray}
+      \left(
+        \begin{array}{c}
+          y_1(t+1)  \\
+          y_2(t+1)  \\
+          \vdots \\
+          y_n(t+1) 
+        \end{array}
+      \right)
+    =
+    \left(
+      \begin{array}{c}
+        y_1(t)  \\
+        y_2(t)  \\
+        \vdots \\
+        y_n(t) 
+      \end{array}
+    \right)
+      +
+      h\left(
+        \begin{array}{cccc}
+          a_{11} & a_{12} & \cdots & a_{1n+1} \\
+          a_{21} & a_{22} & \cdots & a_{2n+1} \\
+          \vdots & \vdots & \ddots & \vdots \\
+          a_{n1} & a_{n2} & \cdots & a_{nn+1}
+        \end{array}
+      \right)
+      \left(
+        \begin{array}{c}
+          1 \\
+          y_1(t) \\
+          y_2(t) \\
+          \vdots \\
+          y_n(t)
+        \end{array}
+      \right)
+    \label{linear_case_mat_n}
+  \end{eqnarray}
+
+  　式(\ref{rotoka})のロトカ・ヴォルテラの方程式は$y_1y_2$という相互作用項を含んでいるが,式(\ref{linear_case_mat_n})の
+  行列によるオイラー法の数値計算はこれに対応していない.式(\ref{rotoka})の方程式を行列で表すと式(\ref{rotoka_mat})のようになる.
+  これによって相互作用項を対応させることができる.式(\ref{rotoka_mat})から,行列の積,ベクトルの変換,ベクトルのスカラー倍,ベクトルの和の4つの
+  演算が必要であることがわかる.
+  しかし,式(\ref{rotoka_mat})では$y_1(t+1)\cdot y_2(t+1) =  y_1y_2(t+1)$が成立していないため,$y_1(t)y_2(t)$を$y_1(t)\cdot y_2(t)$に置き換える必要がある.
+  \begin{eqnarray}
+    \left(
+      \begin{array}{c}
+        y_1(t+1)  \\
+        y_2(t+1)  \\
+        y_1y_2(t+1) 
+      \end{array}
+    \right)
+  =
+    \left(
+      \begin{array}{ccc}
+        y_1(t) \\
+        y_2(t) \\
+        y_1y_2(t)
+      \end{array}
+    \right)
+    +
+    h\left(
+      \begin{array}{cccc}
+        0 & a & 0 & -c \\
+        0 & 0 & -b & d \\
+        0 & 0 & 0 & 0
+      \end{array}
+    \right)
+    \left(
+      \begin{array}{ccc}
+        1 \\
+        y_1(t) \\
+        y_2(t) \\
+        y_1y_2(t)
+      \end{array}
+    \right)
+  \label{rotoka_mat}
+\end{eqnarray}
+
+      \subsubsection{multipleMatrix関数}
+      multipleMatrix関数は行列の積を計算する関数である.表\ref{multipleMatrixtable}にmultipleMatrix関数の機能,引数,返り値の3つを示す.
+      multipleMatrix関数は$n \times (n+1)$行列と$(n+1) \times 1$行列の積を計算する機能を持つから,引数としてa,b,cの3つの行列をとる設計になっている.
+      multipleMatrix関数は引数a,bの行列積abをcに代入する.ただし,DIMはオブジェクト形式マクロで定義されている微分方程式の変数の数である.
+      \begin{table}[H]
+        \caption{multipleMatrix関数の機能,引数,返り値}
+        \label{multipleMatrixtable}
+        \begin{center}
+            \begin{tabular}{c|l}\hline
+          機能 & $n \times (n+1)$行列と$(n+1) \times 1$行列の行列積を計算する\\
+          引数 & double a[DIM][DIM+1],double b[DIM+1][1],double c[DIM][1] \\
+          返り値 & なし\\ \hline
+            \end{tabular}
+        \end{center}
+        \end{table}
+
+        リスト\ref{multipleMatrix}にmultipleMatrix関数のソースコードを示す.リスト\ref{multipleMatrix}では
+        入力行列a,bの積をfor文を用いて計算し,その結果を引数cに代入する処理を行っている.
+    \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=multipleMatrix,caption=multipleMatrix関数のコード]
+#define DIM 3
+
+void multipleMatrix(double a[DIM][DIM+1],double b[DIM+1][1],double c[DIM][1]){
+    int i,j,k;
+    double tmp;
+    tmp=0;
+      for(i=0; i<DIM+1; i++){
+        for(j=0; j<DIM; j++){
+            c[i][j]=0;
+            for(k=0; k<DIM+1; k++){
+	            c[i][j]+=a[i][k]*b[k][j];
+      }
+    }
+  }
+}
+    \end{lstlisting}
+
+      \subsubsection{addVector関数}
+      \subsubsection{scalerVector関数}
+      \subsubsection{transformVector関数}
+      \subsubsection{setVector関数}
+      \subsubsection{main関数}
+
+      \subsection{実行結果}
+      \subsection{考察}
 
         \begin{thebibliography}{9}
           \bibitem{NNCT}  国立高専機構長野高専,\url{http://www.nagano-nct.ac.jp/} ,閲覧日2020年8月5日
