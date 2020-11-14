@@ -10,6 +10,7 @@
     \usepackage{listings, jlisting}
     \usepackage{cases}
     \renewcommand{\lstlistingname}{リスト}
+    \def\vector#1{\mbox{\boldmath $#1$}}
 \lstset{language=c,
   basicstyle=\ttfamily\scriptsize,
   commentstyle=\textit,
@@ -251,7 +252,7 @@
       \subsubsection{multipleMatrix関数}
       multipleMatrix関数は行列の積を計算する関数である.表\ref{multipleMatrixtable}にmultipleMatrix関数の機能,引数,返り値の3つを示す.
       multipleMatrix関数は$n \times (n+1)$行列と$(n+1) \times 1$行列の積を計算する機能を持つから,引数としてa,b,cの3つの行列をとる設計になっている.
-      multipleMatrix関数は引数a,bの行列積abをcに代入する.ただし,DIMはオブジェクト形式マクロで定義されている微分方程式の変数の数である.
+      そして引数a,bの行列積abをcに代入する処理を行う.ただし,DIMはオブジェクト形式マクロで定義されている微分方程式の変数の数である.
       \begin{table}[H]
         \caption{multipleMatrix関数の機能,引数,返り値}
         \label{multipleMatrixtable}
@@ -265,7 +266,7 @@
         \end{table}
 
         リスト\ref{multipleMatrix}にmultipleMatrix関数のソースコードを示す.リスト\ref{multipleMatrix}では
-        入力行列a,bの積をfor文を用いて計算し,その結果を引数cに代入する処理を行っている.
+        引数の行列a,bの積をfor文を用いて計算し,その結果を引数cに代入する処理を行っている.
     \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=multipleMatrix,caption=multipleMatrix関数のコード]
 #define DIM 3
 
@@ -285,10 +286,226 @@ void multipleMatrix(double a[DIM][DIM+1],double b[DIM+1][1],double c[DIM][1]){
     \end{lstlisting}
 
       \subsubsection{addVector関数}
+      addVector関数はベクトルの和を計算する関数である.表\ref{addVectortable}にaddVector関数の機能,引数,返り値の3つを示す.
+      addVector関数は2つの$n$次元ベクトルの和を計算する機能を持つから,引数としてa,b,cの3つのベクトルをとる設計になっている.
+      そして,引数a,bの和を計算し,cに代入する処理を行う.
+        \begin{table}[H]
+          \caption{addVector関数の機能,引数,返り値}
+          \label{addVectortable}
+          \begin{center}
+              \begin{tabular}{c|l}\hline
+                機能 & 2つの$n$次元ベクトルの和を計算する\\
+                引数 & double a[DIM][1],double b[DIM][1],double c[DIM][1] \\
+                返り値 & なし\\ \hline
+              \end{tabular}
+          \end{center}
+          \end{table}
+
+          リスト\ref{addVector}にaddVector関数のソースコードを示す.リスト\ref{addVector}では
+        引数a,bの和をfor文を用いて計算し,その結果を引数cに代入する処理を行っている.
+    \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=addVector,caption=addVector関数のコード]
+void addVector(double a[DIM][1],double b[DIM][1],double c[DIM][1]){
+    int i;
+    for(i=0; i<DIM;i++){
+        c[i][0] = a[i][0]+b[i][0];
+    }
+}
+    \end{lstlisting}
+
       \subsubsection{scalerVector関数}
+      scalerVector関数はベクトルのスカラー倍を計算する関数である.表\ref{scalerVectortable}にscalerVector関数の機能,引数,返り値の3つを示す.
+      scalerVector関数はベクトルのスカラー倍を計算する機能を持つから,引数としてベクトルa,スカラーhをとる設計になっている.
+      そして,引数aのh倍を計算し,aを更新する処理を行う.
+        \begin{table}[H]
+          \caption{scalerVector関数の機能,引数,返り値}
+          \label{scalerVectortable}
+          \begin{center}
+              \begin{tabular}{c|l}\hline
+                機能 & ベクトルのスカラー倍を計算する\\
+                引数 & double a[DIM][1],double h \\
+                返り値 & なし\\ \hline
+              \end{tabular}
+          \end{center}
+          \end{table}
+
+          リスト\ref{scalerVector}にscalerVector関数のソースコードを示す.リスト\ref{scalerVector}では
+        引数aのh倍をfor文を用いて計算し,その結果をaに代入する処理を行っている.
+    \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=scalerVector,caption=scalerVector関数のコード]
+void scalerVector(double a[DIM][1],double h){
+    int i;
+    for(i=0; i<DIM;i++){
+        a[i][0] *=h;
+    }
+}
+    \end{lstlisting}
+
       \subsubsection{transformVector関数}
+      transformVector関数は$n$次元ベクトル$\vector{x}=(x_1,x_2,\dots,x_n)$を$(n+1)$次元ベクトル
+      $\vector{x}'=(1,x_1,x_2,\dots,x_n)$に変換する関数である.
+      表\ref{transformVectortable}にtransformVector関数の機能,引数,返り値の3つを示す.
+      transformVector関数はベクトル変換をする機能を持つから,引数として$n$次元ベクトルaおよび$(n+1)$次元ベクトルb
+      をとる設計になっている.そして,引数aの変換を計算し,bに代入する処理を行う.
+        \begin{table}[H]
+          \caption{transformVector関数の機能,引数,返り値}
+          \label{transformVectortable}
+          \begin{center}
+              \begin{tabular}{c|l}\hline
+                機能 & ベクトルの変換を行う\\
+                引数 & double a[DIM][1],double b[DIM+1][1] \\
+                返り値 & なし\\ \hline
+              \end{tabular}
+          \end{center}
+          \end{table}
+
+          リスト\ref{transformVector}にtransformVector関数のソースコードを示す.リスト\ref{transformVector}では
+        b[0][0]に1を代入し,他のb成分には引数aの成分をfor文を用いて代入する処理を行っている.
+    \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=transformVector,caption=transformVector関数のコード]
+void transformVector(double a[DIM][1],double b[DIM+1][1]){
+    int i;
+    b[0][0]=1;
+    for(i=1; i<DIM+1;i++){
+        b[i][0] = a[i-1][0];
+    }
+}
+    \end{lstlisting}
+
       \subsubsection{setVector関数}
+      setVector関数はベクトルの値を別の変数に代入する関数である.表\ref{setVectortable}にsetVector関数の機能,引数,返り値の3つを示す.
+      setVector関数はベクトルの値を別の変数に代入する機能を持つから,引数としてベクトルa,bをとる設計になっている.
+      そして,引数aを引数bに代入する処理を行う.
+        \begin{table}[H]
+          \caption{setVector関数の機能,引数,返り値}
+          \label{setVectortable}
+          \begin{center}
+              \begin{tabular}{c|l}\hline
+                機能 & ベクトルの値を別の変数に代入する\\
+                引数 & double a[DIM][1],double b[DIM][1]\\
+                返り値 & なし\\ \hline
+              \end{tabular}
+          \end{center}
+          \end{table}
+
+          リスト\ref{setVector}にsetVector関数のソースコードを示す.リスト\ref{setVector}では
+        引数aをfor文を用いてbに代入する処理を行っている.
+    \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=setVector,caption=setVector関数のコード]
+void setVector(double a[DIM][1],double b[DIM][1]){
+    int i;
+    for(i=0;i<DIM;i++){
+        b[i][0] = a[i][0];
+    }
+}
+    \end{lstlisting}
+
+
       \subsubsection{main関数}
+      main関数はEuler法を用いて連立微分方程式を計算する.表\ref{maintable}にmain関数の機能,引数,返り値の3つを示す.
+      main関数は
+        \begin{table}[H]
+          \caption{main関数の機能,引数,返り値}
+          \label{maintable}
+          \begin{center}
+              \begin{tabular}{c|l}\hline
+                機能 & 連立微分方程式の計算を行う\\
+                引数 & なし(void)\\
+                返り値 & (int)0\\ \hline
+              \end{tabular}
+          \end{center}
+          \end{table}
+
+          リスト\ref{main1}にmain関数のソースコードを示す.
+    \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=main1,caption=main関数のコード]
+int main(void){
+    double h = 0.1;
+    double lim=1.01;
+    double a=0.7;
+    double b=0.4;
+    double c=0.09;
+    double d=0.06;
+    double y10=10;
+    double y20=10;
+    double step;
+    int i;
+
+    // 初期値を宣言するベクトルの配列
+    double initVector[DIM][1] ={{y10},{y20},{y10*y20}};
+    // ベクトル変換用配列
+    double transVector[DIM+1][1];
+    // 連立微分方程式のパラメータの配列
+    double weightMatrix[DIM][DIM+1] = {{0,a,0,-c},
+                                       {0,0,-b,d},
+                                       {0,0,0,0}
+                                       };
+    // 計算用配列
+    double yiVector[DIM][1];
+    double tmpVector[DIM][1];
+    //結果表示用配列
+    double resultVector[DIM][1];
+
+    // 初期値表示
+    #ifdef STDOUT
+    printf("step = %0.2lf\n",0.1);
+    #else
+    printf("%lf,%lf,%lf",0.0,initVector[0][0],initVector[1][0]);
+    #endif
+
+        for(i=0;i<DIM;i++){
+            #ifdef STDOUT
+            printf("y%d = %lf\n",i,initVector[i][0]);
+            #endif
+        }
+        printf("\n");
+
+    // 初期値を計算用配列にセット
+    setVector(initVector,yiVector);
+
+    for(step=h;step<=lim;step+=h){
+        //ベクトル変換
+        transformVector(yiVector,transVector);
+        // 微分係数を計算
+        multipleMatrix(weightMatrix,transVector,tmpVector);
+        scalerVector(tmpVector,h);
+        // 1次ラグとの和を計算
+        addVector(yiVector,tmpVector,resultVector);
+
+        //結果を表示
+        #ifdef STROUT
+        printf("step = %0.2lf\n",step);
+        for(i=0;i<DIM;i++){
+            printf("y%d = %lf\n",i,resultVector[i][0]);
+        }
+        printf("\n");
+        #else
+        printf("%lf,%lf,%lf\n",step,resultVector[0][0],resultVector[1][0]);
+        #endif
+
+        // y1*y2調整処理
+        resultVector[2][0] = resultVector[0][0]*resultVector[1][0];
+        // 結果を計算用配列にセット
+        setVector(resultVector,yiVector);
+    }
+    return 0;
+}
+\end{lstlisting}
+リスト\ref{main1}では次に示す手順で処理を行っている.
+\begin{enumerate}
+  \item ステップ数,連立方程式のパラメータの値,初期条件の値,ループ用変数の4つを宣言する(リスト\ref{main1}の2行目から11行目).
+  \item 初期条件をinitVectorという変数で宣言する(リスト\ref{main1}の14行目).
+  \item ベクトル変換用の配列をtransVectorという変数で宣言する(リスト\ref{main1}の16行目).
+  \item 連立方程式のパラメータをweightMatrixという変数で宣言する(リスト\ref{main1}の18行目).
+  \item 計算および結果表示用の配列を宣言する(リスト\ref{main1}の23行目から26行目).
+  \item 初期値を表示する.本プログラムでは条件付きコンパイルを用いる.オブジェクト形式マクロでSTDOUTが宣言されているときは
+  標準出力に適したフォーマットで計算結果を出力する.CSVOUTが定義されているときは,csv出力に適したフォーマットで出力する
+  (リスト\ref{main1}の29行目から40行目).
+  \item 計算用配列に初期条件をセットする(リスト\ref{main1}の43行目).
+  \item ステップ数に応じて手順9から手順14を反復実行する.
+  \item ベクトルの変換を行う.ここでの変換とは$n$次元ベクトル$\vector{x}=(x_1,x_2,\dots,x_n)$を$(n+1)$次元ベクトル
+  $\vector{x}'=(1,x_1,x_2,\dots,x_n)$にする変換のことである(リスト\ref{main1}の47行目).
+  \item 行列の積を用いて微分係数を計算する(リスト\ref{main1}の49行目から50行目).
+  \item ベクトルの和を用いてEuler法の近似計算を行う(リスト\ref{main1}の52行目).
+  \item 結果を表示する.表示形式は手順6と同様にSTDOUT,CSVOUTの場合分けが行われている(リスト\ref{main1}の55行目から63行目).
+  \item $y_1(t)y_2(t)$の調整を行う(リスト\ref{main1}の66行目).
+  \item 次のステップの計算のために計算結果を計算用配列にセットする(リスト\ref{main1}の68行目).
+\end{enumerate}
 
       \subsection{実行結果}
       \subsection{考察}
