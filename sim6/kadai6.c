@@ -48,12 +48,12 @@ void setVector(double a[DIM][1],double b[DIM][1]){
 }
 
 int main(void){
-    double h = 0.1;
-    double lim=1.01;
-    double a=0.7;
-    double b=0.4;
-    double c=0.09;
-    double d=0.06;
+    double h = 0.01;
+    double lim=10.01;
+    double a=8;
+    double b=3;
+    double c=0.5;
+    double d=0.2;
     double y10=10;
     double y20=10;
     double step;
