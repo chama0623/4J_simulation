@@ -9,6 +9,7 @@
     \usepackage{url}
     \usepackage{listings, jlisting}
     \usepackage{cases}
+    \usepackage[subrefformat=parens]{subcaption}
     \renewcommand{\lstlistingname}{リスト}
     \def\vector#1{\mbox{\boldmath $#1$}}
 \lstset{language=c,
@@ -515,50 +516,84 @@ int main(void){
         \caption{実験計画}
       \label{result1-plan}
       \begin{center}
-          \begin{tabular}{c|c|c|c}\hline
-            条件 & $y_2 > a/c$ & $y_2 < a/c$ & $y_2 = a/c$\\ \hline
-            $y_1 > b/d$  & 実験1 & 実験2 & 実験3 \\
-            $y_1 < b/d$  & 実験4 & 実験5 & 実験6\\
-            $y_1 = b/d$  & 実験7 & 実験8 & 実験9\\ \hline
+          \begin{tabular}{c|c|c}\hline
+            条件 & $y_2 > a/c$ & $y_2 < a/c$\\ \hline
+            $y_1 > b/d$  & 実験1 & 実験2  \\
+            $y_1 < b/d$  & 実験3 & 実験4 \\ \hline
           \end{tabular}
       \end{center}
       \end{table}
 
       　実験1から実験9までのパラメータ$a$,$b$,$c$,$d$を表\ref{result1-params}に示す.
-      ただし,$y_1=10,y_2=10$は固定とする.
+      ただし,$y_1=10,y_2=10$,$h=0.01$は固定とする.
       \begin{table}[H]
         \caption{各実験におけるパラメータの設定}
       \label{result1-params}
       \begin{center}
           \begin{tabular}{c|c|c|c|c}\hline
-            実験番号 & $a$ & $b$ & $c$ & $d$ \\ \hline
+            実験番号 & $a$ & $b$ & $c$ & $d$ \\ \hline \hline
             実験1-1 & 1 & 1 & 1 & 1 \\ \hline
             実験1-2 & 7 & 6 & 1 & 1 \\ \hline
-            実験1-3 & 4 & 6 & 1 & 1 \\ \hline
-            実験1-4 & 7 & 6 & 3 & 1 \\ \hline
-            実験2-1 & 7 & 6 & 0.5 & 0.2 \\ \hline
-            実験2-2 & 7 & 6 & 0.6 & 0.4 \\ \hline
-            実験2-3 & 8 & 3 & 0.5 & 0.2 \\ \hline
-            実験2-4 & & & & \\ \hline
-            実験3 & & & & \\ \hline
-            実験3 & & & & \\ \hline
-            実験4 & & & & \\ \hline
-            実験4 & & & & \\ \hline
+            実験1-3 & 6 & 7 & 0.9 & 0.8 \\ \hline
+            実験1-4 & 6 & 7 & 0.8 & 0.9 \\ \hline
+            実験2-1 & 3 & 2 & 0.1 & 0.5 \\ \hline
+            実験2-2 & 3 & 2 & 0.1 & 0.8 \\ \hline
+            実験3-1 & 2 & 3 & 0.5 & 0.1 \\ \hline
+            実験3-2 & 2 & 3 & 0.8 & 0.1 \\ \hline
+            実験4-1 & 2 & 3 & 0.1 & 0.2 \\ \hline
+            実験4-2 & 4 & 5 & 0.3 & 0.4 \\ \hline
+            実験4-3 & 3 & 2 & 0.2 & 0.1 \\ \hline
+            実験4-4 & 2.1 & 2 & 0.2 & 0.18 \\ \hline
           \end{tabular}
       \end{center}
       \end{table}
 
       \subsubsection{実験1の結果}
+      実験1は,$y_2 > a/c$かつ$y_1 > b/d$の条件下でパラメータを変化させたときの実行結果である.
+
+        \begin{figure}[H]
+          \begin{tabular}{c}
+          \begin{minipage}{0.5\hsize}
+           \begin{center}
+            \includegraphics[scale=0.5]{ex1-1.eps}
+           \end{center}
+           \subcaption{実験1-1}
+           \label{ex611}
+          \end{minipage}
+
+          \begin{minipage}{0.5\hsize}
+           \begin{center}
+            \includegraphics[scale=0.5]{ex1-2.eps}
+           \end{center}
+           \subcaption{実験1-2}
+           \label{ex612}
+          \end{minipage}
+        \end{tabular}
+
+        \begin{tabular}{c}
+          \begin{minipage}{0.5\hsize}
+            \begin{center}
+             \includegraphics[scale=0.5]{ex1-3.eps}
+            \end{center}
+            \subcaption{実験1-3}
+            \label{ex613}
+           \end{minipage}
+
+           \begin{minipage}{0.5\hsize}
+            \begin{center}
+             \includegraphics[scale=0.5]{ex1-4.eps}
+            \end{center}
+            \subcaption{実験1-4}
+            \label{ex614}
+           \end{minipage}
+          \end{tabular}
+          \caption{実験1の結果}
+          \label{exp1}
+         \end{figure}
+
       \subsubsection{実験2の結果}
       \subsubsection{実験3の結果}
       \subsubsection{実験4の結果}
-      \subsubsection{実験5の結果}
-      \subsubsection{実験6の結果}
-      \subsubsection{実験7の結果}
-      \subsubsection{実験8の結果}
-      \subsubsection{実験9の結果}
-
-
 
       \subsection{考察}
 
