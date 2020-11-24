@@ -9,6 +9,7 @@
     \usepackage{url}
     \usepackage{listings, jlisting}
     \usepackage{cases}
+    \usepackage{color}
     \usepackage[subrefformat=parens]{subcaption}
     \renewcommand{\lstlistingname}{リスト}
     \def\vector#1{\mbox{\boldmath $#1$}}
@@ -58,6 +59,9 @@
     \thispagestyle{empty}
     \clearpage
     \addtocounter{page}{-1}
+
+    \textcolor{red}{\Huge コピペをさせるためにGitHubにソースやpdfを公開しているわけではありません.公開している理由はみんなとソースコードや実行結果を共有してお互いにより良いものを作りたいからです.
+    人のレポ―トをコピペや,体裁をそのままに内容を変えて提出するのはやめましょう.} \clearpage
     \section{目的}
 
     \section{実験環境}
@@ -85,7 +89,7 @@
       \begin{eqnarray}
       \begin{cases}
         \frac{dy_1}{dx} = ay_1-cy_1y_2 & \\
-        \frac{dy_2}{dx} = -by_1+dy_1y_2 &
+        \frac{dy_2}{dx} = -by_2+dy_1y_2 &
       \end{cases}
       \label{rotoka}
     \end{eqnarray}
@@ -525,7 +529,8 @@ int main(void){
       \end{table}
 
       　実験1から実験9までのパラメータ$a$,$b$,$c$,$d$を表\ref{result1-params}に示す.
-      ただし,$y_1=10,y_2=10$,$h=0.01$は固定とする.
+      ただし,$y_1=10,y_2=10$,$h=0.01$は固定とする.実験1および実験4はパラメータを4通りに変化させて実験を行う.実験2および実験3は
+      パラメータを2通りに変化させて実験を行う.
       \begin{table}[H]
         \caption{各実験におけるパラメータの設定}
       \label{result1-params}
@@ -549,7 +554,8 @@ int main(void){
       \end{table}
 
       \subsubsection{実験1の結果}
-      実験1は,$y_2 > a/c$かつ$y_1 > b/d$の条件下でパラメータを変化させたときの実行結果である.
+      実験1は,$y_2 > a/c$かつ$y_1 > b/d$の条件下でパラメータを変化させたときの実行結果である.実験1-1から実験1-4
+      までの結果を図\ref{exp1}に示す.
 
         \begin{figure}[H]
           \begin{tabular}{c}
@@ -590,6 +596,77 @@ int main(void){
           \caption{実験1の結果}
           \label{exp1}
          \end{figure}
+
+         図\ref{ex611}は表\ref{result1-params}に示した実験1-1の結果をグラフにしたものである.まず,実行結果と手計算
+         で求めたオイラー法の値が一致することを確認する.表\ref{result1-1acc}に実験1-1における実行結果から得られた値と
+         手計算によって計算した値である.表\ref{result1-1acc}では時間$t$が0.01から0.03までの場合について,
+         手計算行った.
+      \begin{table}[H]
+        \caption{実験結果と手計算の比較}
+      \label{result1-1acc}
+      \begin{center}
+          \begin{tabular}{c|l l|l l}\hline
+             & \multicolumn{2}{c|}{実験結果} & \multicolumn{2}{c}{手計算} \\ \cline{2-5}
+             時間$t$ & \multicolumn{1}{c}{$y_1$} & \multicolumn{1}{c|}{$y_2$} & \multicolumn{1}{c}{$y_1$} & \multicolumn{1}{c}{$y_2$} \\ \cline{1-5}
+             0 & 10 & 10 & 10 & 10 \\ 
+0.01 & 9.1 & 10.9 & 9.1 & 10.9 \\
+0.02 & 8.1991 & 11.7829 & 8.1991 & 11.7829 \\
+0.03 & 7.314999 & 12.631163 & 7.314999 & 12.631163 \\ \hline
+          \end{tabular}
+      \end{center}
+      \end{table}
+      手計算の方法を例を交えて説明する.パラメータはすべて1だから,計算する連立方程式微分方程式は
+      式(\ref{all1})である.式(\ref{all1})をオイラー法の計算式にすると式(\ref{all11})になる.
+      \begin{eqnarray}
+        \begin{cases}
+          \frac{dy_1}{dx} = y_1-y_1y_2 & \\
+          \frac{dy_2}{dx} = y_2+y_1y_2 &
+        \end{cases}
+        \label{all1}
+      \end{eqnarray}
+
+      \begin{eqnarray}
+        \begin{cases}
+          y_{1(i+1)} = y_{1(i)}+h(y_{1(i)} + y_{1(i)}y_{2(i)}) & \\
+          y_{2(i+1)} = y_{2(i)}+h(-y_{2(i)} + y_{1(i)}y_{2(i)}) &
+        \end{cases}
+        \label{all11}
+      \end{eqnarray}
+
+      $h=0.01$のときの正しい実験結果は,$y_{1(0)}=y_{2(0)}=10$を式(\ref{all11})に代入すると,
+      式(\ref{all12})に示すように計算できる.時間を$0.02,0.03 \dots $と変化させた場合も
+      同じように計算を行えばよい.
+      \begin{eqnarray}
+        \begin{cases}
+          y_{1(0.01)} = 10+0.01\cdot (10 + 10\cdot 10) = 9.1& \\
+          y_{2(0.01)} = 10+0.01\cdot (-10 + 10\cdot 10) = 10.9&
+        \end{cases}
+        \label{all12}
+      \end{eqnarray}
+      　表\ref{result1-1acc}の実験結果と手計算の結果から,時間$t$が$0.01$から$0.03$のとき,
+      実行結果と手計算の結果が一致していることがわかる.時間$t$が$0.01$から$0.03$の3例で
+      すべての実行結果と手計算に誤差がないとは言えないから,excelによる計算結果と実行結果
+      を比較する.図\ref{gosa}にexcelによる計算と実行結果の差を示す.
+      \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.5]{ex11error.eps}
+        \caption{計算結果の差}
+         \label{gosa}
+        \end{figure}
+        
+        図\ref{gosa}において,手計算と実行結果の差は$10^{-7}$程度であることがわかる.
+        これより,実行結果と手計算が一致していると考えられる.よって実行結果は正しいと
+        言える.\\
+        　実行結果が正しいことがわかったから,パラメータを変化させたときの実行結果
+        について観察する.実験1の4つの実験結果に共通していることは,$y_1$,$y_2$の値
+        が0以上であるということである.$y_1$は被食者,$y_2$は捕食者を表していた.
+        式(\ref{rotoka})のモデルの特性は後で考察するが,$y_1$,$y_2$が
+        非負であることは,モデルによる生物の個体数の増減をシミュレーションの
+        結果が非常にわかりやすくなる.さらに,$a$,$b$を固定して,$c$,$d$を入れ替えた
+        実験1-3,実験1-4の結果に注目する.実験1-3と実験1-4の結果は$y_1$,$y_2$が入れ替わ
+        っただけである.このことから,$a$,$b$を固定したとき,$c$,$d$は対称関係にあり,
+        $c$,$d$のうち,値の大きいほうが,周期的な立ち上がりが大きいことがわかる.
+      
 
       \subsubsection{実験2の結果}
       \subsubsection{実験3の結果}
