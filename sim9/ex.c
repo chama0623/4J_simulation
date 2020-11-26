@@ -11,11 +11,11 @@
 #define H 0.01
 #define MAX_STEP 100
 
-double displacemant(double v){
+double velocity(double v){
     return QBM*v;
 }
 
-double velocity(double v){
+double displacemant(double v){
     return v;
 }
 
@@ -29,17 +29,21 @@ void Heun(){
         tp = t+H;
         k1 = H*displacemant(v);
         l1 = H*velocity(v);
-        k2 = H*displacemant(x+k1);
+
+        k2 = H*displacemant(v+k1);
         l2 = H*velocity(v+l1);
+
         Xp = x+(k1+k2)/2;
+        Vp = v+(l1+l2)/2;
 
         #ifdef STDOUT
-            printf("t=%d  X=%0.10lf,V=%0.10lf\n",i+1,Xp,Vp);
+            printf("t=%lf  X=%0.10lf,V=%0.10lf\n",tp,Xp,Vp);
         #else
-            printf("%d,%lf,%lf\n",i+1,Xp,v);
+            printf("%lf,%lf,%lf\n",tp,Xp,Vp);
         #endif
         t=tp;
         x=Xp;
+        v=Vp;
     }
 }
 

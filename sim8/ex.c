@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-//#define STDOUT
-#define CSVOUT
+#define STDOUT
+//#define CSVOUT
 
 #define R 0.0
 #define L 10.0
@@ -11,7 +11,7 @@
 #define I0 0.0
 
 #define H 0.01
-#define MAX_STEP 5000
+#define MAX_STEP 100
 
 double fI(double Q,double I){
     return -(R/L)*I-Q/(C*L);
