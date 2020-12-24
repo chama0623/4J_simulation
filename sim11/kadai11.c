@@ -1,6 +1,8 @@
 #include<stdio.h>
 #define N 3
 
+double x[N]={0,0,0};
+
 double A[N][N]={{2,2,6},
                 {4,5,13},
                 {5,8,24}};
@@ -45,10 +47,31 @@ void forwardElimination(){
         disp(A,b); 
     }  
 }
+void dispAns(){
+    int i;
+    printf("Answer\n");
+    for(i=0;i<N;i++){
+        printf("x[%d] = %lf\n",i+1,x[i]);
+    }
+}
+
+void backwordSubstitution(void){
+    int k,j;
+    x[N-1]=b[N-1]/A[N-1][N-1];
+    for(k=N-2;k>=0;k--){
+        x[k]=b[k];
+        for(j=k+1;j<=N;j++){
+            x[k]-=A[k][j]*x[j];
+        }
+        x[k]/=A[k][k];
+    }
+}
 
 int main(void){
     disp(A,b);
     forwardElimination();
     disp(A,b);  
+    backwordSubstitution();
+    dispAns(); 
     return 0;
 }
