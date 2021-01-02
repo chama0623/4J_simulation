@@ -49,7 +49,7 @@
 }
 
 \title{第6回～第10回}
-\date{提出日　2020年7月15日 1～2コマ目}
+\date{提出日　2021年7月15日 1～2コマ目}
 \department{組番号　408}
 \id{17406}
 \author{金澤雄大}
@@ -515,7 +515,7 @@ int main(void){
       \subsection{実行結果}
       実行結果は連立微分方程式のパラメータ$a$,$b$,$c$,$d$の値によって異なると考えられる.パラメータ$a$,$b$,$c$,$d$の大小
       で実験結果が異なると仮定すると,実験が必要なパラメータの組み合わせは,表\ref{result1-plan}のようになる.
-      本節では実験1から実験9までの実行結果について述べる.
+      本節では実験1から実験4までの実行結果について述べる.
       \begin{table}[H]
         \caption{実験計画}
       \label{result1-plan}
@@ -661,7 +661,7 @@ int main(void){
         について観察する.実験1の4つの実験結果に共通していることは,$y_1$,$y_2$の値
         が0以上であるということである.$y_1$は被食者,$y_2$は捕食者を表していた.
         式(\ref{rotoka})のモデルの特性は後で考察するが,$y_1$,$y_2$が
-        非負であることは,モデルによる生物の個体数の増減をシミュレーションの
+        非負であることは,モデルによる生物の個体数の増減のシミュレーションの
         結果が非常にわかりやすくなる.さらに,$a$,$b$を固定して,$c$,$d$を入れ替えた
         実験1-3,実験1-4の結果に注目する.実験1-3と実験1-4の結果は$y_1$,$y_2$が入れ替わ
         っただけである.このことから,$a$,$b$を固定したとき,$c$,$d$は対称関係にあり,
@@ -669,11 +669,118 @@ int main(void){
       
 
       \subsubsection{実験2の結果}
+      実験2は,$y_2 < a/c$かつ$y_1 > b/d$の条件下でパラメータを変化させたときの実行結果である.実験2-1および実験2-2
+      結果を図\ref{exp2}に示す.図\ref{exp2}から,実験2の条件では被食者$y_2$が周期的に大量発生し,捕食者$y_1$は20前後の
+      数字であることが読み取れる.このことから,$y_2 < a/c$という条件が満たされるようなモデルは,被食者が周期的に
+      大量発生し,捕食者は被食者と比較すると少数であることが考えられる.
+
+      \begin{figure}[H]
+        \begin{tabular}{c}
+        \begin{minipage}{0.5\hsize}
+         \begin{center}
+          \includegraphics[scale=0.5]{ex2-1.eps}
+         \end{center}
+         \subcaption{実験2-1}
+         \label{ex621}
+        \end{minipage}
+
+        \begin{minipage}{0.5\hsize}
+         \begin{center}
+          \includegraphics[scale=0.5]{ex2-2.eps}
+         \end{center}
+         \subcaption{実験2-2}
+         \label{ex622}
+        \end{minipage}
+      \end{tabular}
+        \caption{実験2の結果}
+        \label{exp2}
+       \end{figure}
+
       \subsubsection{実験3の結果}
+      実験3は,$y_2 > a/c$かつ$y_1 < b/d$の条件下でパラメータを変化させたときの実行結果である.実験3-1および実験3-2
+      結果を図\ref{exp3}に示す.図\ref{exp3}から,実験3の条件では実験2とは逆に,被食者$y_1$が周期的に大量発生し,
+      捕食者$y_2$は少数であることが読み取れる.実験2および実験3から,$y_2 > a/c$または$y_1 > b/d$というどちらかの
+      条件を満たすモデルでは,被食者と捕食者のバランスが悪いシミュレーション結果が得られることが考えられる.さらに,
+      実験2,実験3のどちらにおいても,個体数が0に限りなく近づくタイミングがあることがわかる.今扱っているモデルでは
+      連続なモデルを考えているから,個体数が0に限りなく近づいても上昇することがあるが,実際には生態系のバランス崩れた
+      ことで絶滅したと考えることもできる.
+
+      \begin{figure}[H]
+        \begin{tabular}{c}
+        \begin{minipage}{0.5\hsize}
+         \begin{center}
+          \includegraphics[scale=0.5]{ex3-1.eps}
+         \end{center}
+         \subcaption{実験3-1}
+         \label{ex631}
+        \end{minipage}
+
+        \begin{minipage}{0.5\hsize}
+         \begin{center}
+          \includegraphics[scale=0.5]{ex3-2.eps}
+         \end{center}
+         \subcaption{実験3-2}
+         \label{ex632}
+        \end{minipage}
+      \end{tabular}
+        \caption{実験3の結果}
+        \label{exp3}
+       \end{figure}
+
       \subsubsection{実験4の結果}
+      実験4は,$y_2 < a/c$かつ$y_1 < b/d$の条件下でパラメータを変化させたときの実行結果である.実験4-1から実験4-2
+      までの結果を図\ref{exp4}に示す.図\ref{exp4}から実験4の結果は,パラメータによってまったく違うことが読み取れる.
+      図\ref{ex641}は$y_1$,$y_2$ともに個体数が安定しており,個体数が0,つまり絶滅しにくいモデルであることが読み取れる.
+      図\ref{ex642}は個体の周期的な増減に加えて,全体にトレンドがあるように見える.図\ref{ex643}は$y_1$,$y_2$の周期的な
+      増加のピークの値が,増加しているモデルであるように見える.図\ref{ex644}は$t=2$で$y_1$,$y_2$ともに絶滅するモデルで
+      あると読み取れる.
+
+      \begin{figure}[H]
+        \begin{tabular}{c}
+        \begin{minipage}{0.5\hsize}
+         \begin{center}
+          \includegraphics[scale=0.5]{ex4-1.eps}
+         \end{center}
+         \subcaption{実験4-1}
+         \label{ex641}
+        \end{minipage}
+
+        \begin{minipage}{0.5\hsize}
+         \begin{center}
+          \includegraphics[scale=0.5]{ex4-2.eps}
+         \end{center}
+         \subcaption{実験4-2}
+         \label{ex642}
+        \end{minipage}
+      \end{tabular}
+
+      \begin{tabular}{c}
+        \begin{minipage}{0.5\hsize}
+          \begin{center}
+           \includegraphics[scale=0.5]{ex4-3.eps}
+          \end{center}
+          \subcaption{実験4-3}
+          \label{ex643}
+         \end{minipage}
+
+         \begin{minipage}{0.5\hsize}
+          \begin{center}
+           \includegraphics[scale=0.5]{ex4-4.eps}
+          \end{center}
+          \subcaption{実験4-4}
+          \label{ex644}
+         \end{minipage}
+        \end{tabular}
+        \caption{実験4の結果}
+        \label{exp4}
+       \end{figure}
 
       \subsection{考察}
-
+       実験1～4の結果から,パラメータa,b,c,dの意味を考察する.式(\ref{rotoka})からパラメータaは
+       被食者の繁殖のしやすさ,パラメータbは捕食者の減少のしやすさを意味すると考えられる.パラメータcは
+       実験2から捕食者の数に比例した被食者の減少のしやすさであると考えられる.パラメータdは実験3から
+       被食者の数に比例した捕食者の繁殖のしやすさであると考える.
+       
         \begin{thebibliography}{9}
           \bibitem{NNCT}  国立高専機構長野高専,\url{http://www.nagano-nct.ac.jp/} ,閲覧日2020年8月5日
           \end{thebibliography}
