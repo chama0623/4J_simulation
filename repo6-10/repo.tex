@@ -781,6 +781,89 @@ int main(void){
        実験2から捕食者の数に比例した被食者の減少のしやすさであると考えられる.パラメータdは実験3から
        被食者の数に比例した捕食者の繁殖のしやすさであると考える.
        
+
+      \section{課題7}
+      本章では課題7における,課題内容,プログラムの説明,実行結果の3つについて述べる.
+      \subsection{課題内容}
+      質量$m$の物体がばね定数$k$のばねにくっついているときの単振動のシミュレーションを行う.
+      この運動方程式は式(\ref{soe})のように書ける.高階微分方程式をそのまま数値計算を行うことは
+      できない.我々が扱えるのは,連立微分方程式であるから,これに帰着するように式変形を行う.
+      \begin{equation}
+        \frac{d^2x}{dt^2}+\frac{k}{m}x=0
+        \label{soe}
+      \end{equation}
+      $v=\frac{dx}{dt}$とおくと,式(\ref{soe})は式(\ref{bane})で表せる.式(\ref{bane})は
+      連立方程式微分方程式であるから,課題6のプログラムを改変すれば数値計算を行うことができる.
+      \begin{eqnarray}
+        \begin{cases}
+          v = \frac{dx}{dt} & \\
+          \frac{dv}{dt} = -kx &
+        \end{cases}
+        \label{bane}
+      \end{eqnarray}
+
+
+      \subsection{プログラムの説明}
+      課題7のプログラムは,課題6のプログラムのメイン関数を改変しただけである.リスト\ref{main7}にメイン関数のコードを示す.
+
+      \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=main7,caption=メイン関数のコード]
+int main(void){
+    double h = 0.01;
+    double lim=10.0;
+    double m=1;
+    double k=2;
+    double l=0;
+    double step;
+    int i;
+    double initVector[DIM][1] ={{10},{0}}; // 初期条件 y,v 
+    double transVector[DIM+1][1];
+    double weightMatrix[DIM][DIM+1] = {{0,0,1},
+                                        {0,-k/m,-l/m}
+                                       };
+    double yiVector[DIM][1];
+    double tmpVector[DIM][1];
+    double resultVector[DIM][1];
+
+    setVector(initVector,yiVector);
+    for(step=h;step<=lim;step+=h){
+        transformVector(yiVector,transVector);
+        multipleMatrix(weightMatrix,transVector,tmpVector);
+        scalerVector(tmpVector,h);
+        addVector(yiVector,tmpVector,resultVector);
+        /* format for stdout
+        printf("step = %0.2lf\n",step);
+        printf("y = %lf\n",resultVector[0][0]);
+        printf("v = %lf\n",resultVector[1][0]);
+        printf("\n");
+        */
+        printf("%0.2lf,%lf,%lf\n",step,resultVector[0][0],resultVector[1][0]);
+
+        setVector(resultVector,yiVector);
+    }
+    return 0;
+}
+            \end{lstlisting}     
+      \subsection{実行結果}
+      
+      \subsection{考察}
+      \section{課題8}
+      本章では課題8における,課題内容,プログラムの説明,実行結果の3つについて述べる.
+      \subsection{課題内容}
+      \subsection{プログラムの説明}
+      \subsection{実行結果}
+      \section{課題9}
+      本章では課題9における,課題内容,プログラムの説明,実行結果の3つについて述べる.
+      \subsection{課題内容}
+      \subsection{プログラムの説明}
+      \subsection{実行結果}
+      \subsection{考察}
+      \section{課題10}
+      本章では課題10における,課題内容,プログラムの説明,実行結果の3つについて述べる.
+      \subsection{課題内容}
+      \subsection{プログラムの説明}
+      \subsection{実行結果}
+      \subsection{考察}
+
         \begin{thebibliography}{9}
           \bibitem{NNCT}  国立高専機構長野高専,\url{http://www.nagano-nct.ac.jp/} ,閲覧日2020年8月5日
           \end{thebibliography}

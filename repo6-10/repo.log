@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.euc) (TeX Live 2019/Debian) (preloaded format=platex 2020.10.18)  2 JAN 2021 14:03
+This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.euc) (TeX Live 2019/Debian) (preloaded format=platex 2020.10.18)  2 JAN 2021 14:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -424,18 +424,18 @@ Overfull \hbox (15.33334pt too wide) in paragraph at lines 757--774
 [][] 
  []
 
-[12] [13] (./repo.aux)
+[12] [13] [14] (./repo.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 5496 strings out of 482863
- 78505 string characters out of 5959217
+ 5503 strings out of 482863
+ 78547 string characters out of 5959217
  551739 words of memory out of 5000000
- 20748 multiletter control sequences out of 15000+600000
+ 20755 multiletter control sequences out of 15000+600000
  547199 words of font info for 84 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
- 48i,14n,51p,297b,1761s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 48i,14n,51p,297b,1763s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on repo.dvi (14 pages, 62088 bytes).
+Output written on repo.dvi (15 pages, 70888 bytes).
