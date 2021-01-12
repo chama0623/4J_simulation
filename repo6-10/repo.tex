@@ -783,7 +783,7 @@ int main(void){
       \section{課題7}
       本章では課題7における,課題内容,プログラムの説明,実行結果の3つについて述べる.
       \subsection{課題内容}
-      ばね定数$k$のばねに質量$m$の物体がつながっているときの単振動のシミュレーションを行う.
+      課題7では,ばね定数$k$のばねに質量$m$の物体がつながっているときの単振動のシミュレーションを行う.
       本課題では床との摩擦を考慮し,摩擦係数の大きさ$l$とする.
       このときの運動方程式は式(\ref{soe})のように書ける.初期条件は$y(0)=10,y'(0)=0$とする.高階微分方程式をそのまま数値計算を行うことは
       できない.我々が扱えるのは,連立微分方程式であるから,これに帰着するように式変形を行う.
@@ -857,13 +857,13 @@ int main(void){
       周期$T$は式(\ref{shukikm})に,示すようにばね定数$k$および質量$m$で表すことができる.
 
       \begin{eqnarray}
-        \frac{d^2x}{dt^2}=-\frac{k}{m}x \label{tansindo1} \\
-        \frac{d^2x}{dt^2}=-\omega^2 x \label{tansindo2} 
+        \frac{d^2x}{dt^2} &=& -\frac{k}{m}x \label{tansindo1} \\
+        &=& -\omega^2 x \label{tansindo2} 
       \end{eqnarray}
 
       \begin{eqnarray}
-        T = \frac{2 \pi }{\omega} \label{shuki} \\
-        T = 2\pi \sqrt{\frac{m}{k}} \label{shukikm}
+        T &=& \frac{2 \pi }{\omega} \label{shuki} \\
+         &=& 2\pi \sqrt{\frac{m}{k}} \label{shukikm}
       \end{eqnarray}
 
       さらに,式(\ref{tansindo2})の微分方程式は簡単に解を求めることができる.解を求める方法については省略するが,式(\ref{tansindo2})を
@@ -871,9 +871,9 @@ int main(void){
       代入すると, $l=0$のときの位置$x$は式(\ref{tansindo4})で表せる.さらに,式(\ref{tansindo4})から速度$v$は式(\ref{tansindo5})
       で表せる.
       \begin{eqnarray}
-        x = C_1 \sin(\omega t) + C_2 \cos(\omega t) \label{tansindo3} \\
-        x = 10\cos(\sqrt{k} t) \label{tansindo4} \\
-        v = -10\sqrt{k} \sin(\sqrt{k} t) \label{tansindo5}
+        x &=& C_1 \sin(\omega t) + C_2 \cos(\omega t) \label{tansindo3} \\
+        x &=& 10\cos(\sqrt{k} t) \label{tansindo4} \\
+        v &=& -10\sqrt{k} \sin(\sqrt{k} t) \label{tansindo5}
       \end{eqnarray}
 
       式(\ref{tansindo4})は振幅が10の余弦関数であり,式(\ref{tansindo5})は振幅10の正弦関数である.これより,シミュレーションの結果は位置$y$が振幅が10の余弦関数,
@@ -882,7 +882,7 @@ int main(void){
       のグラフである.図\ref{l0k2m1v}は$l=0$,$k=2$のときの速度$v$,図\ref{l0k4m1v}は$l=0$,$k=4$のとき速度$v$
       のグラフである.図\ref{l0k2m1}および図\ref{l0k4m1}から,シミュレーションの結果はおおよそ余弦関数の理論値と一致していることが読み取れる.
       図\ref{l0k2mv}および図\ref{l0k4mv}についても,シミュレーションの結果はおおよそ正弦関数の理論値と一致していることが読み取れる.
-      このことから$l=0$のとき単振動になることが確認できた.
+      これらより,$l=0$のとき単振動になることが確認できた.
 
       \begin{figure}[H]
       \centering
@@ -914,7 +914,24 @@ int main(void){
     
 
         次に$l,k$の値を変更した場合の動作について確認する. 刻み幅は次節の考察で述べるように,時間によらず振幅が一定になるような刻み幅$h=0.001$を用いる.
+        図\ref{l1k2}および図\ref{l3k2}に$l$を変化させたときの実行結果を示す.図\ref{l1k2}は$l=1$,図\ref{l3k2}は$l=3$のときの実行結果である.
+        図\ref{l1k2}および図\ref{l3k2}から摩擦力の項があると,振動が徐々に減衰して静止する運動になることがわかる.単振動に摩擦力があると,これは徐々に
+        振動が弱くなり,最終的には停止するというイメージに一致する.
         
+        \begin{figure}[H]
+          \centering
+          \includegraphics[scale=0.6]{l1k2.eps}
+          \caption{$l=1$,$k=2$のときの実行結果}
+          \label{l1k2}
+          \end{figure}
+
+      \begin{figure}[H]
+      \centering
+      \includegraphics[scale=0.6]{l3k2.eps}
+      \caption{$l=3$,$k=2$のときの実行結果}
+      \label{l3k2}
+      \end{figure}
+
       \subsection{考察}
       図\ref{l0k2m1}および図\ref{l0k4m1}からは,時間が経過すると誤差が大きくなってしまう特徴が読み取れる.時間によらず振幅が一定になるような刻み幅を考察する.
       ここでは$k=4$,$l=0$での3周期分の「計算値の絶対値」と「理論値の絶対値」の標準偏差を比較し,相対誤差が1\%未満になる場合の刻み幅を,振幅が一定になるような刻み幅とする.このような指標を
@@ -949,7 +966,93 @@ int main(void){
       \section{課題8}
       本章では課題8における,課題内容,プログラムの説明,実行結果の3つについて述べる.
       \subsection{課題内容}
+      課題8では直列RLC回路の微分方程式をホイン法で解くシミュレーションを行う. ホイン法の説明は前回の第一回のレポートで行ったため省略する.
+      本課題で解く微分方程式を式(\ref{RLC})に示す.初期条件は,$Q(0)=Q_0$,$\frac{d}{dt}Q(0)=0$とする.
+
+      \begin{equation}
+        L \frac{d^2Q(t)}{dt^2}+R \frac{dQ(t)}{dt}+\frac{Q(t)}{C}=0
+        \label{RLC}
+      \end{equation}
+
+      式(\ref{RLC})はパラメータ$R$(レジスタンス),$L$(インダクタンス),$C$(キャパシタンス)が特殊な値のときのみ解を求めることができるが,
+      一般に解を求めることができない.このためシミュレーションを行う.シミュレーションを行う場合,式(\ref{RLC})は2階微分方程式であるため
+      課題7で行ったように式変形を行って連立微分方程式に帰着させる必要がある.この変形について説明する. $\frac{dQ(t)}{dt}$は物理学的には
+      電流$I$を表しているから,$I(t)=\frac{dQ(t)}{dt}$とおくと,式(\ref{RLC})は式(\ref{IRLC})で表せる.初期条件も$I$を用いて
+      $Q(0)=Q_0$,$I(0)=0$と書き直せる.式(\ref{RLC})から式(\ref{IRLC})の変形で2階微分方程式を連立微分方程式に帰着させることができたから,
+      シミュレーションを行うことができる.
+
+      \begin{eqnarray}
+        \begin{cases}
+          \frac{d I(t)}{dt}+\frac{R}{L}I(t)+\frac{Q(t)}{CL}=0 & \\
+          I(t)=\frac{dQ(t)}{dt} &
+        \end{cases}
+        \label{IRLC}
+      \end{eqnarray}
+
+
       \subsection{プログラムの説明}
+      プログラムの説明を行う.リスト\ref{kadai8}にホイン法で連立微分方程式を解くプログラムを示す.
+      \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=kadai8,caption=課題8のプログラム]
+#include<stdio.h>
+#include<stdlib.h>
+
+#define STDOUT
+//#define CSVOUT
+
+#define R 0.0
+#define L 10.0
+#define C 0.3
+#define Q0 10.0
+#define I0 0.0
+
+#define H 0.01
+#define MAX_STEP 100
+
+double fI(double Q,double I){
+    return -(R/L)*I-Q/(C*L);
+}
+
+double fQ(double I){
+    return I;
+}
+
+void Heun(){
+    double t = 0;
+    double tp;
+    double Qp,Ip,k1,k2;
+    double Q=Q0;
+    double I=I0;
+    for(int i=0;i<MAX_STEP;i++){
+        tp = t+H;
+        k1 = H*fI(Q,I);
+        k2 = H*fI(Q+H,I+k1);
+        Ip = I+(k1+k2)/2;
+
+        k1 = H*fQ(I);
+        k2 = H*fQ(I+k1);
+        Qp = Q+(k1+k2)/2;
+        #ifdef STDOUT
+            printf("t=%3d  Q=%0.10lf,I=%0.10lf\n",i+1,Qp,Ip);
+        #else
+            printf("%d,%lf,%lf\n",i+1,Qp,Ip);
+        #endif
+        t=tp;
+        I=Ip;
+        Q=Qp;
+    }
+}
+
+int main(int argc,char *argv[]){
+    #ifdef STDOUT
+        printf("t=%3d  Q=%0.10lf,I=%0.10lf\n",0,Q0,I0);
+    #else
+        printf("%d,%lf,%lf\n",0,Q0,I0);
+    #endif    
+    Heun();
+    
+    return 0;
+}
+      \end{lstlisting}
       \subsection{実行結果}
       \section{課題9}
       本章では課題9における,課題内容,プログラムの説明,実行結果の3つについて述べる.

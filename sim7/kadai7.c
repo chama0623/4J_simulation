@@ -51,8 +51,8 @@ int main(void){
     double h = 0.001;
     double lim=10;
     double m=1;
-    double k=2;
-    double l=3;
+    double k=3;
+    double l=1;
     double step;
     int i;
     double initVector[DIM][1] ={{10},{0}}; // 初期条件 y,v 
