@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #define DIM 2
+//#define STDOUT
+#define CSVOUT
 
 void multipleMatrix(double a[DIM][DIM+1],double b[DIM+1][1],double c[DIM][1]){
     int i,j,k;
@@ -46,11 +48,11 @@ void setVector(double a[DIM][1],double b[DIM][1]){
 }
 
 int main(void){
-    double h = 0.01;
-    double lim=10.0;
+    double h = 0.001;
+    double lim=10;
     double m=1;
     double k=2;
-    double l=0;
+    double l=3;
     double step;
     int i;
     double initVector[DIM][1] ={{10},{0}}; // 初期条件 y,v 
@@ -68,14 +70,14 @@ int main(void){
         multipleMatrix(weightMatrix,transVector,tmpVector);
         scalerVector(tmpVector,h);
         addVector(yiVector,tmpVector,resultVector);
-        /* format for stdout
-        printf("step = %0.2lf\n",step);
+#ifdef STDOUT
+        printf("step = %lf\n",step);
         printf("y = %lf\n",resultVector[0][0]);
         printf("v = %lf\n",resultVector[1][0]);
         printf("\n");
-        */
-        printf("%0.2lf,%lf,%lf\n",step,resultVector[0][0],resultVector[1][0]);
-
+#else
+        printf("%lf,%lf,%lf\n",step,resultVector[0][0],resultVector[1][0]);
+#endif
         setVector(resultVector,yiVector);
     }
     return 0;
