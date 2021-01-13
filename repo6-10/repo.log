@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.euc) (TeX Live 2019/Debian) (preloaded format=platex 2020.10.18)  13 JAN 2021 07:56
+This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.euc) (TeX Live 2019/Debian) (preloaded format=platex 2020.10.18)  13 JAN 2021 22:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -442,7 +442,11 @@ File: l1k2.eps Graphic file (type eps)
 File: l3k2.eps Graphic file (type eps)
 <l3k2.eps> [15]
 File: h0001.eps Graphic file (type eps)
-<h0001.eps> [16] [17] [18] (./repo.aux)
+<h0001.eps> [16] [17]
+File: r0.eps Graphic file (type eps)
+<r0.eps> [18]
+File: kado.eps Graphic file (type eps)
+<kado.eps> [19] [20] [21] (./repo.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -451,12 +455,12 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 5594 strings out of 482863
- 79341 string characters out of 5959217
+ 5626 strings out of 482863
+ 79586 string characters out of 5959217
  551739 words of memory out of 5000000
- 20839 multiletter control sequences out of 15000+600000
- 546437 words of font info for 81 fonts, out of 8000000 for 9000
+ 20868 multiletter control sequences out of 15000+600000
+ 546772 words of font info for 82 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
  48i,14n,51p,297b,1763s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on repo.dvi (19 pages, 92076 bytes).
+Output written on repo.dvi (22 pages, 105856 bytes).

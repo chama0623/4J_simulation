@@ -946,7 +946,7 @@ int main(void){
       \label{h7}
       \begin{center}
       \begin{tabular}{r|c|c|c}\hline
-        刻み幅 & 理論値の標準偏差 & 計算値の標準偏差 & 相対誤差[\%] \\ \hline \hline 
+        刻み幅 & 計算値の標準偏差 & 理論値の標準偏差 & 相対誤差[\%] \\ \hline \hline 
         0.1 & 13.71 & 3.09 & 77.46 \\
         0.05 & 6.00 & 3.08 & 94.81 \\
         0.01 & 3.62 & 3.08 & 17.53 \\
@@ -992,12 +992,16 @@ int main(void){
 
       \subsection{プログラムの説明}
       プログラムの説明を行う.リスト\ref{kadai8}にホイン法で連立微分方程式を解くプログラムを示す.
+      $n$次元の連立微分方程式をホイン法で解くプログラムを作成することは難しかったため,2次の連立微分方程式を
+      解くプログラムを作成した.微分方程式のパラメータ$R$,$L$,$C$および初期条件$Q_0$,$I_0$は定数として定義している.
+      また,連立方程式は16行目から20行目に示す関数の形で定義している.ホイン法による連立微分方程式の計算は
+      24行目から48行目に示すHeun関数で行っている.
       \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=kadai8,caption=課題8のプログラム]
 #include<stdio.h>
 #include<stdlib.h>
 
-#define STDOUT
-//#define CSVOUT
+//define STDOUT
+#define CSVOUT
 
 #define R 0.0
 #define L 10.0
@@ -1006,7 +1010,7 @@ int main(void){
 #define I0 0.0
 
 #define H 0.01
-#define MAX_STEP 100
+#define MAX_STEP 3000
 
 double fI(double Q,double I){
     return -(R/L)*I-Q/(C*L);
@@ -1032,9 +1036,9 @@ void Heun(){
         k2 = H*fQ(I+k1);
         Qp = Q+(k1+k2)/2;
         #ifdef STDOUT
-            printf("t=%3d  Q=%0.10lf,I=%0.10lf\n",i+1,Qp,Ip);
+            printf("t=%lf  Q=%0.10lf,I=%0.10lf\n",tp,Qp,Ip);
         #else
-            printf("%d,%lf,%lf\n",i+1,Qp,Ip);
+            printf("%lf,%lf,%lf\n",tp,Qp,Ip);
         #endif
         t=tp;
         I=Ip;
@@ -1053,8 +1057,141 @@ int main(int argc,char *argv[]){
     return 0;
 }
       \end{lstlisting}
-      \subsection{実行結果}
-      \section{課題9}
+
+      \subsection{実行結果と考察}
+      実行結果として,次に示す2つを確認する.
+      \begin{enumerate}
+        \item $R=0$のとき,単振動になることを確認する.また,正しく計算できる刻み幅を考察する.
+        \item $R=2\sqrt{\frac{L}{C}}$付近での動作を確認する.
+      \end{enumerate}
+        
+        まず,$R=0$のときに単振動になることを確認する. $R=0$のとき式(\ref{RLC})は式\ref{LC}となる.
+        これは課題7の式(\ref{tansindo1})と同じ形の式である.これよりシミュレーションの結果は
+        $Q(t)$が余弦関数,$I(t)$が正弦関数になるはずである.
+        
+        \begin{equation}
+          \frac{d^2Q(t)}{dt^2} =-\frac{Q(t)}{LC}
+          \label{LC}
+        \end{equation}
+
+        図\ref{r0}に$R=0,L=10,C=0.3$のときの実行結果を示す.刻み幅は$h=0.01$としている.
+        図\ref{r0}から,$Q(t)$は振幅10の余弦関数,$I(t)$は正弦関数になっていることがわかる.
+        これらより,$R=0$のときに単振動になることが確認できた.
+        
+        \begin{figure}[H]
+          \centering
+          \includegraphics[scale=0.6]{r0.eps}
+          \caption{$R=0$のときの実行結果}
+          \label{r0}
+          \end{figure}
+
+        次に,正しく計算できる刻み幅について考察する.正しく計算できているかは課題7と同じ指標を用いて
+        行う.表\ref{h8}に各刻み幅における計算値,理論値の相対誤差を示す.課題7と同様に理論値は$\sqrt{10}$
+        になる.表\ref{h8}から刻み幅$h=0.001$のときに,指標となる1\%未満になっていることがわかる.このことから
+        正しく計算できる刻み幅は0.001であると考察する.
+        \begin{table}[H]
+          \caption{刻み幅と誤差の関係}
+          \label{h8}
+          \begin{center}
+          \begin{tabular}{r|c|c|c}\hline
+            刻み幅 & 計算値の標準偏差 & 理論値の標準偏差 & 相対誤差[\%] \\ \hline \hline 
+            0.1 & 4.55 & 3.08 & 47.73 \\
+            0.05 & 3.64 & 3.08 & 18.18 \\
+            0.01 & 3.17 & 3.08 & 2.92 \\
+            0.005 & 3.12 & 3.08 & 1.30 \\
+            0.001 & 3.09 & 3.08 & 0.32 \\ \hline
+          \end{tabular}
+          \end{center}
+          \end{table}
+
+        $R=2\sqrt{\frac{L}{C}}$付近での動作を確認する. $L=10$,$C=0.3$という条件から$R=11.54$のときで
+        シミュレーションを行ってみる.図\ref{kado}に$R=11.54$のときの実行結果を示す.図\ref{kado}から
+        $Q$,$I$どちらも,振動することなく減衰し,10秒付近で0になっていることが読み取れる.
+
+        \begin{figure}[H]
+          \centering
+          \includegraphics[scale=0.6]{kado.eps}
+          \caption{$R=2\sqrt{\frac{L}{C}}$付近での実行結果}
+          \label{kado}
+          \end{figure}
+
+        $R=2\sqrt{\frac{L}{C}}$付近での動作について考察する.式(\ref{RLC})の特性方程式は
+        式(\ref{RLClamda})で表せる.ここで,式(\ref{RLClamda})の判別式$D$(式(\ref{D}))を考える.
+
+        \begin{equation}
+          L \lambda^2 +R \lambda + \frac{1}{C}=0
+          \label{RLClamda}
+        \end{equation}
+
+        \begin{eqnarray}
+          D = R^2 -4\frac{L}{C} \label{D} 
+        \end{eqnarray}
+
+        回路の動作は図\ref{r0}のように定常な場合と,図\ref{kado}のように電流,電圧が時間的に変化する2つ
+        の場合に分けられる. 回路は電源投入時や切断の直後に図\ref{kado}のような動作をし,十分な時間が経過すると
+        図\ref{r0}のように変化が落ち着いた状態になる.「例題と演習で学ぶ 続・電気回路」!によれば,
+        電源投入時や切断の直後に電流,電圧が変化する状態を過度状態という.またこの現象を過度現象という.
+        過度現象は判別式$D$(式(\ref{D}))の符号によって変化し,それぞれの現象には次に示すように名前がつけられている.
+        \begin{itemize}
+          \item $D>0$ $\dots$ 過制動
+          \item $D=0$ $\dots$ 臨界制動
+          \item $D<0$ $\dots$ 減衰振動
+        \end{itemize}
+
+        いま考えている現象は$R=2\sqrt{\frac{L}{C}}$という条件を,式(\ref{D})に代入すると$D=0$になることから
+        臨界制動であることがわかる.臨界制動のとき式(\ref{RLC})は解くことができる.式(\ref{RLC})を解くために,
+        式(\ref{RLClamda})を用いる.式(\ref{RLClamda})に$R=2\sqrt{\frac{L}{C}}$を代入して変形すると式(\ref{CL})
+        のようになる.式(\ref{CL})の$CL$を式(\ref{alpha})に示すように$\alpha$とおく.
+        \begin{eqnarray}
+          CL \lambda^2 +2\sqrt{CL} \lambda + 1=0 \label{CL} \\ 
+          \alpha \lambda^2 +2\sqrt{\alpha} \lambda + 1=0 \label{alpha}
+        \end{eqnarray}
+
+        判別式$D=0$より,$\lambda$が2重解を持つことがわかるから,式(\ref{alpha})を式(\ref{hyojun})に示すように,
+        標準系に変形する.式(\ref{hyojun})から,式(\ref{lmd})に示すように$\lambda$を求められる.これより臨界制動のときの
+        $Q(t)$の一般解は式(\ref{qgeneral})で表せる.$C_1,C_2$は任意定数である.
+        \begin{eqnarray}
+          (\sqrt{\alpha} \lambda +1)^2 &=& 0 \label{hyojun} \\ 
+          \lambda &=& -\frac{1}{\sqrt{\alpha}} \label{lmd} \\
+          Q(t) &=& (C_1+C_2 t)e^{-\frac{1}{\sqrt{\alpha}}t} \\
+          Q(t) &=& (C_1+C_2 t)e^{-\frac{1}{\sqrt{CL}}t} \label{qgeneral} 
+        \end{eqnarray}
+
+        初期条件$Q(0)=10,I(0)=0$から,$Q(t),I(t)$の特殊解を計算する.
+        式(\ref{qgeneral})から$Q(0)$を計算すると式(\ref{c1})に示すように$C_1=10$であることがわかる.
+        \begin{eqnarray}
+          Q(0) = C_1 = 10 \label{c1}
+        \end{eqnarray}
+
+        $C_2$は$Q(t)$の微分,つまり$I(t)$に初期条件を代入することで求めることができる.
+        $I(t)$を実際に計算すると式(\ref{it})のようになる.式(\ref{it})に初期条件を代入すると,
+        式(\ref{c2})に示すように$C_2=\frac{10}{\sqrt{CL}}$であることがわかる.
+        \begin{eqnarray}
+          I(t) &=& \frac{dQ}{dt} \\
+               &=& C_2e^{-\frac{1}{\sqrt{CL}}t} -\frac{1}{\sqrt{CL}}(C_1+C_2 t)e^{-\frac{1}{\sqrt{CL}}t} \label{it} \\
+          I(0) &=& C_2 -\frac{1}{\sqrt{CL}}C_1 = 0 \\
+              C_2 &=& \frac{10}{\sqrt{CL}} \label{c2}
+        \end{eqnarray}
+
+        これらより, $Q(t)$の特殊解は式(\ref{qs}), $I(t)$の特殊解は式(\ref{is})に示すようになる.
+        \begin{eqnarray}
+          Q(t) &=& 10(1+\frac{t}{CL})e^{-\frac{1}{\sqrt{CL}}t} \label{qs} \\
+          I(t) &=& -\frac{10}{CL}t e^{-\frac{1}{\sqrt{CL}}t} \label{is} 
+        \end{eqnarray}        
+
+        図\ref{kado}から,式(\ref{qs})および式(\ref{is})は,時間$t$を大きくすると0に収束するという特徴が
+        あることが考えられる.このことは,式(\ref{qs})および式(\ref{is})の本質部分である$te^{-t}$の無限大の
+        極限をとることで確認できる.式(\ref{rop})から式(\ref{ropzero})に$te^{-t}$の無限大の極限を計算した結果を示す.
+        式(\ref{rop})の右辺から,分母分子がともに無限大の極限であることがわかる.このため,式(\ref{rop})から式(\ref{rop2})の
+        展開にはロピタルの定理を用いてる.$te^{-t}$の無限大の極限は0になるから,図\ref{kado}のシミュレーション結果と一致していることが
+        確認できた.
+        \begin{eqnarray}
+          \lim_{t \to \infty} te^{-t} = \lim_{t \to \infty} \frac{t}{e^t} \label{rop} \\
+                                      = \lim_{t \to \infty} \frac{1}{e^t} \label{rop2} \\
+                                      = 0　\label{ropzero}
+        \end{eqnarray}  
+
+        \section{課題9}
       本章では課題9における,課題内容,プログラムの説明,実行結果の3つについて述べる.
       \subsection{課題内容}
       \subsection{プログラムの説明}

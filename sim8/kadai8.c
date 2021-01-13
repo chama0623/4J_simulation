@@ -1,106 +1,59 @@
 #include<stdio.h>
 #include<stdlib.h>
-#define DIM 2
 
-//#define STDOUT
+//define STDOUT
 #define CSVOUT
 
-void multipleMatrix(double a[DIM][DIM+1],double b[DIM+1][1],double c[DIM][1]){
-    int i,j,k;
-    double tmp;
-    tmp=0;
-      for(i=0; i<DIM+1; i++){
-        for(j=0; j<DIM; j++){
-            c[i][j]=0;
-            for(k=0; k<DIM+1; k++){
-	            c[i][j]+=a[i][k]*b[k][j];
-      }
-    }
-  }
+#define R 11
+#define L 10.0
+#define C 0.3
+#define Q0 10.0
+#define I0 0.0
+
+#define H 0.001
+#define MAX_STEP 32648 //326483
+
+double fI(double Q,double I){
+    return -(R/L)*I-Q/(C*L);
 }
 
-void addVector(double a[DIM][1],double b[DIM][1],double c[DIM][1]){
-    int i;
-    for(i=0; i<DIM;i++){
-        c[i][0] = a[i][0]+b[i][0];
-    }
+double fQ(double I){
+    return I;
 }
 
-void scalerVector(double a[DIM][1],double h){
-    int i;
-    for(i=0; i<DIM;i++){
-        a[i][0] *=h;
-    }
-}
+void Heun(){
+    double t = 0;
+    double tp;
+    double Qp,Ip,k1,k2;
+    double Q=Q0;
+    double I=I0;
+    for(int i=0;i<MAX_STEP;i++){
+        tp = t+H;
+        k1 = H*fI(Q,I);
+        k2 = H*fI(Q+H,I+k1);
+        Ip = I+(k1+k2)/2;
 
-void transformVector(double a[DIM][1],double b[DIM+1][1]){
-    int i;
-    b[0][0]=1;
-    for(i=1; i<DIM+1;i++){
-        b[i][0] = a[i-1][0];
-    }
-}
-
-void setVector(double a[DIM][1],double b[DIM][1]){
-    int i;
-    for(i=0;i<DIM;i++){
-        b[i][0] = a[i][0];
-    }
-}
-
-int main(void){
-    double h = 0.01;
-    double lim=100.0;
-    double R=0;
-    double C=0.3;
-    double L = 10;
-    double Q0 = 10;
-    double step;
-    int i;
-    double initVector[DIM][1] ={{0},{10}}; // 初期条件 y,v 
-    double transVector[DIM+1][1];
-    double weightMatrix[DIM][DIM+1] = {{0,-R/L,-1/(C*L)},
-                                        {0,1,0}
-                                       };
-    double yiVector[DIM][1];
-    double fiVector[DIM][1];
-    double fiastaVector[DIM][1];
-    double tmpVector[DIM][1];
-    double resultVector[DIM][1];
-
-    // 初期値表示
-    #ifdef STDOUT
-    printf("step = %0.2lf\n",0.1);
-    #else
-    printf("%lf,%lf,%lf",0.0,initVector[0][0],initVector[1][0]);
-    #endif
-    for(i=0;i<DIM;i++){
+        k1 = H*fQ(I);
+        k2 = H*fQ(I+k1);
+        Qp = Q+(k1+k2)/2;
         #ifdef STDOUT
-        printf("y%d = %lf\n",i,initVector[i][0]);
-        #endif
-    }
-    printf("\n");
-
-    setVector(initVector,yiVector);
-    for(step=h;step<=lim;step+=h){
-        transformVector(yiVector,transVector);
-        multipleMatrix(weightMatrix,transVector,fiVector);
-        transformVector(fiVector,transVector);
-        transVector[1][0]+=h;
-        multipleMatrix(weightMatrix,transVector,fiastaVector);
-        addVector(fiVector,fiastaVector,tmpVector);
-        scalerVector(tmpVector,h/2);
-        addVector(tmpVector,yiVector,resultVector);
-        //結果を表示
-        #ifdef STROUT
-        printf("step = %0.2lf\n",step);
-        printf("I%d = %lf\n",i,resultVector[0][0]);
-        printf("Q%d = %lf\n",i,resultVector[1][0]);
-        printf("\n");
+            printf("t=%lf  Q=%0.10lf,I=%0.10lf\n",tp,Qp,Ip);
         #else
-        printf("%lf,%lf,%lf\n",step,resultVector[0][0],resultVector[1][0]);
+            printf("%lf,%lf,%lf\n",tp,Qp,Ip);
         #endif
-        setVector(resultVector,yiVector);
+        t=tp;
+        I=Ip;
+        Q=Qp;
     }
+}
+
+int main(int argc,char *argv[]){
+    #ifdef STDOUT
+        printf("t=%3d  Q=%0.10lf,I=%0.10lf\n",0,Q0,I0);
+    #else
+        printf("%d,%lf,%lf\n",0,Q0,I0);
+    #endif    
+    Heun();
+    
     return 0;
 }
