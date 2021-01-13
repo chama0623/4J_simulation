@@ -881,7 +881,7 @@ int main(void){
       図\ref{l0k2m1}～図\ref{l0k4m1v}にシミュレーションの結果を示す.図\ref{l0k2m1}は$l=0$,$k=2$のときの位置$y$,図\ref{l0k4m1}は$l=0$,$k=4$のとき位置$y$
       のグラフである.図\ref{l0k2m1v}は$l=0$,$k=2$のときの速度$v$,図\ref{l0k4m1v}は$l=0$,$k=4$のとき速度$v$
       のグラフである.図\ref{l0k2m1}および図\ref{l0k4m1}から,シミュレーションの結果はおおよそ余弦関数の理論値と一致していることが読み取れる.
-      図\ref{l0k2mv}および図\ref{l0k4mv}についても,シミュレーションの結果はおおよそ正弦関数の理論値と一致していることが読み取れる.
+      図\ref{l0k2m1v}および図\ref{l0k4m1v}についても,シミュレーションの結果はおおよそ正弦関数の理論値と一致していることが読み取れる.
       これらより,$l=0$のとき単振動になることが確認できた.
 
       \begin{figure}[H]
@@ -1104,7 +1104,7 @@ int main(int argc,char *argv[]){
           \end{center}
           \end{table}
 
-        $R=2\sqrt{\frac{L}{C}}$付近での動作を確認する. $L=10$,$C=0.3$という条件から$R=11.54$のときで
+        $R=2\sqrt{\frac{L}{C}}$付近での動作を確認する. $L=10$,$C=0.3$という条件から$R=11.54$で
         シミュレーションを行ってみる.図\ref{kado}に$R=11.54$のときの実行結果を示す.図\ref{kado}から
         $Q$,$I$どちらも,振動することなく減衰し,10秒付近で0になっていることが読み取れる.
 
@@ -1180,8 +1180,8 @@ int main(int argc,char *argv[]){
         \end{eqnarray}        
 
         図\ref{kado}から,式(\ref{qs})および式(\ref{is})は,時間$t$を大きくすると0に収束するという特徴が
-        あることが考えられる.このことは,式(\ref{qs})および式(\ref{is})の本質部分である$te^{-t}$の無限大の
-        極限をとることで確認できる.式(\ref{rop})から式(\ref{ropzero})に$te^{-t}$の無限大の極限を計算した結果を示す.
+        あることが考えられる.このことは,式(\ref{qs})および式(\ref{is})の本質部分である$e^{-t}$および$te^{-t}$の無限大の
+        極限をとることで確認できる.$e^{-t}$の無限大の極限は0である.式(\ref{rop})から式(\ref{ropzero})に$te^{-t}$の無限大の極限を計算した結果を示す.
         式(\ref{rop})の右辺から,分母分子がともに無限大の極限であることがわかる.このため,式(\ref{rop})から式(\ref{rop2})の
         展開にはロピタルの定理を用いてる.$te^{-t}$の無限大の極限は0になるから,図\ref{kado}のシミュレーション結果と一致していることが
         確認できた.
@@ -1191,18 +1191,38 @@ int main(int argc,char *argv[]){
                                       = 0　\label{ropzero}
         \end{eqnarray}  
 
-        \section{課題9}
-      本章では課題9における,課題内容,プログラムの説明,実行結果の3つについて述べる.
+        \section{課題9,課題10}
+      本章では課題9および課題10における,課題内容,プログラムの説明,実行結果の3つについて述べる.
       \subsection{課題内容}
+      課題9および課題10では,電場および磁場中を運動する電荷の運動のシミュレーションを行う.
+      電荷$q$の速度\mbox{\boldmath $v$},電場\mbox{\boldmath $E$},磁場\mbox{\boldmath $B$}とすると電荷が受ける力\mbox{\boldmath $F$}
+      は式\ref{uf}で与えられる.
+      \begin{eqnarray}
+        \mbox{\boldmath $F$} = q(\mbox{\boldmath $E$}+\mbox{\boldmath $v$} \times \mbox{\boldmath $B$}) \label{uf}
+      \end{eqnarray}
+
+      まず課題9では\mbox{\boldmath $E$}$=0$かつ,磁場\mbox{\boldmath $E$}$=(0,0,B_0)$の場合について考える.
+      磁場\mbox{\boldmath $E$}$=(0,0,B_0)$の意味は大きさが$B_0$で成分が
+      z成分のみであることを表している. \mbox{\boldmath $E$}$=0$のとき,式\ref{uf}は
+      ローレンツの法則と呼ばれ,外積を成分表示に直して計算すると式(\ref{lorentz})のようになる.
+      \begin{eqnarray}
+        \mbox{\boldmath $F$} &=& q+\mbox{\boldmath $v$} \times \mbox{\boldmath $B$} \\
+        &=& q
+        \left|
+          \begin{array}{ccc}
+            \mbox{\boldmath $i$} & \mbox{\boldmath $j$} & \mbox{\boldmath $k$} \\
+            v_x & v_y & v_z \\
+            0 & 0 & B_0 
+          \end{array}
+        \right| \\
+        &=& q(v_y B_0,-v_x B_0,0)
+      \label{lorentz}
+    \end{eqnarray}
+
       \subsection{プログラムの説明}
       \subsection{実行結果}
       \subsection{考察}
-      \section{課題10}
-      本章では課題10における,課題内容,プログラムの説明,実行結果の3つについて述べる.
-      \subsection{課題内容}
-      \subsection{プログラムの説明}
-      \subsection{実行結果}
-      \subsection{考察}
+
 
         \begin{thebibliography}{9}
           \bibitem{NNCT}  国立高専機構長野高専,\url{http://www.nagano-nct.ac.jp/} ,閲覧日2020年8月5日
