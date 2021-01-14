@@ -4,14 +4,14 @@
 //#define STDOUT
 #define CSVOUT
 
-#define QBM 2.0
+#define QBM 1.0
 #define X0 0.1
 #define Y0 0.0
 #define V0X 0.0
 #define V0Y 0.1
 
-#define H 0.01
-#define MAX_STEP 1000
+#define H 0.001
+#define MAX_STEP 10000
 
 double velocity(double v){
     return QBM*v;
@@ -50,9 +50,9 @@ void Heun(){
         Vyp = vy+(l1+l2)/2;
 
         #ifdef STDOUT
-            printf("t=%lf  X =%0.10lf,Y =%0.10lf  Vx =%0.10lf,Vy =%0.10lf\n",tp,Xp,Yp,Vxp,Vyp);
+            printf("t=%lf  X =%0.10lf,Y =%0.10lf  Vx =%0.10lf,Vy =%0.10lf |v| =%lf\n",tp,Xp,Yp,Vxp,Vyp,Vxp*Vxp+Vyp*Vyp);
         #else
-            printf("%lf,%lf,%lf,%lf,%lf\n",tp,Xp,Yp,Vxp,Vyp);
+            printf("%lf,%lf,%lf,%lf,%lf,%lf\n",tp,Xp,Yp,Vxp,Vyp,Vxp*Vxp+Vyp*Vyp);
         #endif
         t=tp;
         x=Xp;
@@ -64,9 +64,9 @@ void Heun(){
 
 int main(int argc,char *argv[]){
     #ifdef STDOUT
-        printf("t=%3d  X =%0.10lf,Y =%0.10lf  Vx =%0.10lf,Vy =%0.10lf\n",0.0,X0,Y0,V0X,V0Y);
+        printf("t=%lf  X =%0.10lf,Y =%0.10lf  Vx =%0.10lf,Vy =%0.10lf |v| =%lf\n",0.0,X0,Y0,V0X,V0Y,V0X*V0X+V0Y*V0Y);
     #else
-        printf("%lf,%lf,%lf,%lf,%lf\n",0.0,X0,Y0,V0X,V0Y);
+        printf("%lf,%lf,%lf,%lf,%lf,%lf\n",0.0,X0,Y0,V0X,V0Y,V0X*V0X+V0Y*V0Y);
     #endif    
     Heun();
     

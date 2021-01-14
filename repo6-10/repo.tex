@@ -1203,7 +1203,7 @@ int main(int argc,char *argv[]){
 
       まず課題9では\mbox{\boldmath $E$}$=0$かつ,磁場\mbox{\boldmath $E$}$=(0,0,B_0)$の場合について考える.
       磁場\mbox{\boldmath $E$}$=(0,0,B_0)$の意味は大きさが$B_0$で成分が
-      z成分のみであることを表している. \mbox{\boldmath $E$}$=0$のとき,式\ref{uf}は
+      z成分のみであることを表している. \mbox{\boldmath $E$}$=0$のとき,式(\ref{uf})は
       ローレンツの法則と呼ばれ,外積を成分表示に直して計算すると式(\ref{lorentz})のようになる.
       \begin{eqnarray}
         \mbox{\boldmath $F$} &=& q+\mbox{\boldmath $v$} \times \mbox{\boldmath $B$} \\
@@ -1219,9 +1219,241 @@ int main(int argc,char *argv[]){
       \label{lorentz}
     \end{eqnarray}
 
+    運動方程式$m\frac{d^2}{dt^2}$\mbox{\boldmath $P$}$=$\mbox{\boldmath $F$}より式(\ref{lorentz})の左辺を書き直すと,電荷の運動は式(\ref{eqE0})
+    に示すようになる.課題9では式(\ref{eqE0})のシミュレーションを行う.
+    \begin{eqnarray}
+      \begin{cases}
+        \frac{d^2x}{dt^2} = \frac{q}{m}v_y B_0 , \frac{dx}{dt} = v_x \\
+        \frac{d^2y}{dt^2} = -\frac{q}{m}v_x B_0 , \frac{dy}{dt} = v_y 
+      \end{cases}
+      \label{eqE0}
+    \end{eqnarray}
+
+    電場と速度は,力に垂直であるという関係がある.このため,仕事は行われず,速度の大きさは変化しない.このため,速度の大きさは式(\ref{vxvy})に示すように
+    定数になる.シミュレーションの結果は刻み幅の取り方によって式(\ref{vxvy})が成り立たない場合がある.このため,式(\ref{vxvy})が成り立つ刻み幅を考察する.
+    \begin{eqnarray}
+      v_x ^2 + v_y ^2 = constant
+      \label{vxvy}
+    \end{eqnarray}
+
+    課題10では\mbox{\boldmath $E$}$=(0,0,E_z)$($E_x$:定数)の場合の場合について考える.課題10の条件で式(\ref{uf})を成分表示すると式(\ref{ef})のようになる.
+    課題10では式(\ref{ef})のシミュレーションを行う.
+
+    \begin{eqnarray}
+      \begin{cases}
+        \frac{d^2x}{dt^2} = \frac{q}{m}(E_x + v_y B_0) , \frac{dx}{dt} = v_x \\
+        \frac{d^2y}{dt^2} = -\frac{q}{m}(E_y - v_x B_0) , \frac{dy}{dt} = v_y \\
+        \frac{d^2z}{dt^2} = \frac{q}{m}E_z , \frac{dz}{dt} = v_z
+      \end{cases}
+      \label{ef}
+    \end{eqnarray}
+    
       \subsection{プログラムの説明}
-      \subsection{実行結果}
-      \subsection{考察}
+      本節では課題9および課題10のプログラムの説明について述べる.
+      \subsubsection{課題9のプログラム}
+    リスト\ref{kadai9}に課題9のシミュレーションを行うコードを示す.微分方程式のパラメータは定数として定義している.
+    定数QBMは式(\ref{eqE0})における$\frac{q}{m}B_0$のことである.速度の計算はvelocity関数,位置の計算はdisplacement関数
+    で行っている.ホイン法によるシミュレーションはHeun関数で行っている.
+      \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=kadai9,caption=課題9のコード]
+#include<stdio.h>
+#include<stdlib.h>
+
+//#define STDOUT
+#define CSVOUT
+
+#define QBM 2.0
+#define X0 0.1
+#define Y0 0.0
+#define V0X 0.0
+#define V0Y 0.1
+
+#define H 0.001
+#define MAX_STEP 10000
+
+double velocity(double v){
+    return QBM*v;
+}
+
+double displacemant(double v){
+    return v;
+}
+
+void Heun(){
+    double t = 0;
+    double tp;
+    double Xp,Yp,Vxp,Vyp,k1,k2,l1,l2;
+    double x=X0;
+    double vx=V0X;
+    double y=Y0;
+    double vy=V0Y;
+    for(int i=0;i<MAX_STEP;i++){
+        tp = t+H;
+        k1 = H*displacemant(vx);
+        l1 = H*velocity(vy);
+
+        k2 = H*displacemant(vx+k1);
+        l2 = H*velocity(vy+l1);
+
+        Xp = x+(k1+k2)/2;
+        Vxp = vx+(l1+l2)/2;
+
+        k1 = H*displacemant(vy);
+        l1 = -H*velocity(vx);
+
+        k2 = H*displacemant(vy+k1);
+        l2 = -H*velocity(vx+l1);
+
+        Yp = y+(k1+k2)/2;
+        Vyp = vy+(l1+l2)/2;
+
+        #ifdef STDOUT
+            printf("t=%lf  X =%0.10lf,Y =%0.10lf  Vx =%0.10lf,Vy =%0.10lf |v| =%lf\n"
+            ,tp,Xp,Yp,Vxp,Vyp,Vxp*Vxp+Vyp*Vyp);
+        #else
+            printf("%lf,%lf,%lf,%lf,%lf,%lf\n",tp,Xp,Yp,Vxp,Vyp,Vxp*Vxp+Vyp*Vyp);
+        #endif
+        t=tp;
+        x=Xp;
+        y=Yp;
+        vx=Vxp;
+        vy=Vyp;
+    }
+}
+
+int main(int argc,char *argv[]){
+    #ifdef STDOUT
+        printf("t=%lf  X =%0.10lf,Y =%0.10lf  Vx =%0.10lf,Vy =%0.10lf |v| =%lf\n"
+        ,0.0,X0,Y0,V0X,V0Y,V0X*V0X+V0Y*V0Y);
+    #else
+        printf("%lf,%lf,%lf,%lf,%lf,%lf\n",0.0,X0,Y0,V0X,V0Y,V0X*V0X+V0Y*V0Y);
+    #endif    
+    Heun();
+    
+    return 0;
+}
+      \end{lstlisting}
+
+      \subsubsection{課題10のプログラム}
+      \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=kadai10,caption=課題10のコード]
+      \end{lstlisting}
+
+      \subsection{実行結果と考察}
+      本節では課題9および課題10の実行結果および考察について述べる.
+      \subsubsection{課題9の実行結果と考察}
+      図\ref{sim9h01}および図\ref{sim9h0001}にリスト\ref{kadai9}の実行結果を示す.
+      図\ref{sim9h01}は$h=0.1$,図\ref{sim9h01}は$h=0.001$のときの実行結果である.
+      式(\ref{vxvy})から,正しい実行結果のとき速度のグラフは半径1,中心$(0,0)$の円を描くことが
+      考えられる. 図\ref{sim9h01}の場合,速度は円を描いていないことが読み取れる.
+      これは刻み幅が大きいために誤差が生じていると考察する.図\ref{sim9h0001}の場合,速度のグラフは円を
+      描いていることが読み取れる.
+
+      \begin{figure}[H]
+        \begin{tabular}{c}
+        \begin{minipage}{0.5\hsize}
+         \begin{center}
+          \includegraphics[scale=0.5]{sim9h01xy.eps}
+         \end{center}
+         \subcaption{位置のグラフ}
+         \label{sim9h01xy}
+        \end{minipage}
+
+        \begin{minipage}{0.5\hsize}
+         \begin{center}
+          \includegraphics[scale=0.5]{sim9h01vxy.eps}
+         \end{center}
+         \subcaption{速度のグラフ}
+         \label{sim9h01vxy}
+        \end{minipage}
+      \end{tabular}
+        \caption{$h=0.1$のときの実行結果}
+        \label{sim9h01}
+       \end{figure}
+    
+       \begin{figure}[H]
+        \begin{tabular}{c}
+        \begin{minipage}{0.5\hsize}
+         \begin{center}
+          \includegraphics[scale=0.5]{sim9h0001xy.eps}
+         \end{center}
+         \subcaption{位置のグラフ}
+         \label{sim9h0001xy}
+        \end{minipage}
+
+        \begin{minipage}{0.5\hsize}
+         \begin{center}
+          \includegraphics[scale=0.5]{sim9h0001vxy.eps}
+         \end{center}
+         \subcaption{速度のグラフ}
+         \label{sim9h0001vxy}
+        \end{minipage}
+      \end{tabular}
+        \caption{$h=0.001$のときの実行結果}
+        \label{sim9h0001}
+       \end{figure}
+
+       このように,刻み幅によって,正しい実行結果が得られない場合がある.正しい結果が得られる刻み幅について考察する.
+       誤差の測定は,計算値と理論値の$v_x^2+x_y^2$の値を比較することで行う.理論値は$v_x^2+x_y^2=0.01$である.
+       表\ref{sim9h8}に刻み幅を変えて,計算を行った結果を示す.表\ref{sim9h8}から,刻み幅を小さくすると誤差が減少し,
+       $h=0.001$のとき,誤差の平均が約2\%になることがわかる.このことから刻み幅$h=0.001$を正しい結果が得られる刻み幅と
+       考える.
+
+       \begin{table}[H]
+        \caption{刻み幅と誤差の関係}
+        \label{sim9h8}
+        \begin{center}
+        \begin{tabular}{r|c|c}\hline
+          刻み幅 & 誤差の平均[\%] & 誤差の標準偏差 \\ \hline \hline 
+          0.1 & 1262.53 & 1379.76 \\
+          0.05 & 232.77 & 185.0 \\
+          0.01 & 24.16 & 14.32 \\
+          0.005 & 11.25 & 6.42 \\
+          0.001 & 2.13 & 1.18 \\ \hline
+        \end{tabular}
+        \end{center}
+        \end{table}
+
+        次に$B_0$を変化させたときの実行結果について確認する.図\ref{B1}～図\ref{B10}に$B_0$を変化させたときの実行結果を
+        示す.図\ref{B1}は$B_0=1$,図\ref{B5}は$B_0=5$,図\ref{B10}は$B_0=10$のときの実行結果である.どの結果も0から10秒のとき
+        のシミュレーションを行っている.
+
+        \begin{figure}[H]
+          \centering
+          \includegraphics[scale=0.6]{sim9xyB1.eps}
+          \caption{$B_0=1$の実行結果}
+          \label{B1}
+          \end{figure}
+          \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.6]{sim9xyB5.eps}
+            \caption{$B_0=5$の実行結果}
+            \label{B5}
+            \end{figure}
+        \begin{figure}[H]
+          \centering
+          \includegraphics[scale=0.6]{sim9xyB10.eps}
+          \caption{$B_0=10$の実行結果}
+          \label{B10}
+          \end{figure}
+
+          なぜこのようなシミュレーション結果になるのか考察する.速度\mbox{\boldmath $F$}で運動する粒子は一様磁場中で
+          円運動をする.円運動の向心力はローレンツ力で,この運動をサイクロトロン運動という.図\ref{B1}～図\ref{B10}から
+          円運動の周期は磁場の大きさ$B_0$に依存すると考えられる.このことを確認する.向心力$F=mr \omega^2$およびローレンツ力$f=qvB_0 \sin \theta$
+          (磁場と速度は垂直より$\sin \theta =1$)
+          より角速度$w$は式(\ref{lorentzomega})で表せる.式(\ref{lorentzomega})から円運動の周期$T$は式(\ref{lorentzt})
+          にようになる.いま,電荷$q$,質量$m$は1で固定しているから周期$T$は磁場の大きさ$B_0$のみに依存することがわかる.さらに式(\ref{lorentzt})から
+          磁場の大きさ$B_0$が小さいとき,周期が長くなり, 磁場の大きさ$B_0$が大きいとき,周期が短くなる関係があることが読み取れる.図\ref{B1}～図\ref{B10}
+          からもこの関係が読み取れる. $B_0=1$(図\ref{B1})のときは,同じ時間あたりの回転数が少なく, $B_0=10$(図\ref{B1})のときは$B_0=1$と比較して
+          回転数が多い.これらの考察から,円運動をするというシミュレーション結果が正しいと考察する.
+
+          \begin{eqnarray}
+            mr \omega^2 &=& qvB_0 \\
+            \omega &=& \frac{q}{m}B_0 \label{lorentzomega} \\
+            T &=& \frac{2 \pi}{\omega} \\
+            T &=& 2 \pi \sqrt{\frac{m}{qB_0}} \label{lorentzt}
+          \end{eqnarray}             
+
+
+      \subsubsection{課題10の実行結果と考察}
 
 
         \begin{thebibliography}{9}
