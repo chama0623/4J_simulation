@@ -52,7 +52,7 @@ int main(void){
     double lim=10;
     double m=1;
     double k=3;
-    double l=1;
+    double l=0;
     double step;
     int i;
     double initVector[DIM][1] ={{10},{0}}; // 初期条件 y,v 

@@ -49,7 +49,7 @@
 }
 
 \title{第6回～第10回}
-\date{提出日　2021年7月15日 1～2コマ目}
+\date{提出日　2021年1月16日}
 \department{組番号　408}
 \id{17406}
 \author{金澤雄大}
@@ -63,7 +63,7 @@
     \section{目的}
 
     \section{実験環境}
-      実験環境を表\ref{env}に示す.gccはWindows上のWSL(Windows Subsystem for Linux)で動作するものを用いる.
+      実験環境を表\ref{env}に示す. gccはWindows上のWSL(Windows Subsystem for Linux)で動作するものを用いる.
       \begin{table}[H]
         \caption{実験環境}
       \label{env}
@@ -1129,7 +1129,7 @@ int main(int argc,char *argv[]){
 
         回路の動作は図\ref{r0}のように定常な場合と,図\ref{kado}のように電流,電圧が時間的に変化する2つ
         の場合に分けられる. 回路は電源投入時や切断の直後に図\ref{kado}のような動作をし,十分な時間が経過すると
-        図\ref{r0}のように変化が落ち着いた状態になる.「例題と演習で学ぶ 続・電気回路」!によれば,
+        図\ref{r0}のように変化が落ち着いた状態になる.「例題と演習で学ぶ 続・電気回路」\cite{cu}によれば,
         電源投入時や切断の直後に電流,電圧が変化する状態を過度状態という.またこの現象を過度現象という.
         過度現象は判別式$D$(式(\ref{D}))の符号によって変化し,それぞれの現象には次に示すように名前がつけられている.
         \begin{itemize}
@@ -1334,7 +1334,108 @@ int main(int argc,char *argv[]){
       \end{lstlisting}
 
       \subsubsection{課題10のプログラム}
+      リスト\ref{kadai10}に課題10のコードを示す.リスト\ref{kadai10}において,初期条件およびシミュレーションの
+      パラメータは7行目から16行目に示す定数で定義している.他の部分については課題9のコードにz方向の処理を加えた
+      だけであるから説明は省略する.
       \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=kadai10,caption=課題10のコード]
+#include<stdio.h>
+#include<stdlib.h>
+
+//#define STDOUT
+#define CSVOUT
+
+#define M 1.0
+#define Q 1.0
+#define B0 2.0
+#define E 2.0
+#define X0 0.1
+#define Y0 0.0
+#define V0X 0.0
+#define V0Y 0.1
+#define Z0 0.0
+#define V0Z 0.0
+
+#define H 0.01
+#define MAX_STEP 1000
+
+double velocity(double v){
+    return Q/M*B0*v;
+}
+
+double velocityz(){
+    return Q/M*E;
+}
+
+double displacemant(double v){
+    return v;
+}
+
+void Heun(){
+    double t = 0;
+    double tp;
+    double Xp,Yp,Vxp,Vyp,Zp,Vzp,k1,k2,l1,l2;
+    double x=X0;
+    double vx=V0X;
+    double y=Y0;
+    double vy=V0Y;
+    double z=Z0;
+    double vz=V0Z;
+    for(int i=0;i<MAX_STEP;i++){
+        tp = t+H;
+        k1 = H*displacemant(vx);
+        l1 = H*velocity(vy);
+
+        k2 = H*displacemant(vx+k1);
+        l2 = H*velocity(vy+l1);
+
+        Xp = x+(k1+k2)/2;
+        Vxp = vx+(l1+l2)/2;
+
+        k1 = H*displacemant(vy);
+        l1 = -H*velocity(vx);
+
+        k2 = H*displacemant(vy+k1);
+        l2 = -H*velocity(vx+l1);
+
+        Yp = y+(k1+k2)/2;
+        Vyp = vy+(l1+l2)/2;
+
+        k1 = H*displacemant(vz);
+        l1 = H*velocityz();
+
+        k2 = H*displacemant(vz+k1);
+        l2 = H*velocityz();
+
+        Zp = z+(k1+k2)/2;
+        Vzp = vz+(l1+l2)/2;
+
+        #ifdef STDOUT
+            printf("t=%lf  X =%0.10lf,Y =%0.10lf  Vx =%0.10lf,Vy =%0.10lf\n"
+            ,tp,Xp,Yp,Vxp,Vyp);
+        #else
+            printf("%lf,%lf,%lf,%lf,%lf,%lf,%lf\n",tp,Xp,Yp,Zp,Vxp,Vyp,Vzp);
+        #endif
+        t=tp;
+        x=Xp;
+        y=Yp;
+        z=Zp;
+        vx=Vxp;
+        vy=Vyp;
+        vz=Vzp;
+    }
+}
+
+int main(int argc,char *argv[]){
+    #ifdef STDOUT
+        printf("t=%3d  X =%0.10lf,Y =%0.10lf  Vx =%0.10lf,Vy =%0.10lf\n"
+        ,0.0,X0,Y0,V0X,V0Y);
+    #else
+        printf("%lf,%lf,%lf,%lf,%lf,%lf,%lf\n",0.0,X0,Y0,Z0,V0X,V0Y,V0Z);
+    #endif    
+    Heun();
+    
+    return 0;
+}
       \end{lstlisting}
 
       \subsection{実行結果と考察}
@@ -1444,7 +1545,7 @@ int main(int argc,char *argv[]){
           磁場の大きさ$B_0$が小さいとき,周期が長くなり, 磁場の大きさ$B_0$が大きいとき,周期が短くなる関係があることが読み取れる.図\ref{B1}～図\ref{B10}
           からもこの関係が読み取れる. $B_0=1$(図\ref{B1})のときは,同じ時間あたりの回転数が少なく, $B_0=10$(図\ref{B1})のときは$B_0=1$と比較して
           回転数が多い.これらの考察から,円運動をするというシミュレーション結果が正しいと考察する.
-          
+
 
           \begin{eqnarray}
             mr \omega^2 &=& qvB_0 \\
@@ -1455,10 +1556,62 @@ int main(int argc,char *argv[]){
 
 
       \subsubsection{課題10の実行結果と考察}
+        図\ref{b2e1}～図\ref{b05e1xyz}にリスト\ref{kadai10}のコードの実行結果を示す.
+        図\ref{b2e1}および図\ref{b2e1xyz}は$E=1.0$かつ$B=2.0$のときの実行結果,
+        図\ref{b05e1}および図\ref{b05e1xyz}は$E=1.0$かつ$B=0.5$のときの実行結果である.
+        図\ref{b2e1}～図\ref{b05e1xyz}から,電場$E$が加わると,xy方向は円運動,z方向は上昇する運動をすることが
+        読み取れる.
 
+        \begin{figure}[H]
+          \centering
+          \includegraphics[scale=0.6]{b2e1.eps}
+          \caption{$E=1.0$かつ$B=2.0$のときの実行結果(3D)}
+          \label{b2e1}
+          \end{figure}
+
+        \begin{figure}[H]
+          \centering
+          \includegraphics[scale=0.5]{b2e1xyz.eps}
+          \caption{$E=1.0$かつ$B=2.0$のときの実行結果(成分ごと)}
+          \label{b2e1xyz}
+          \end{figure}
+
+        \begin{figure}[H]
+          \centering
+          \includegraphics[scale=0.6]{b05e1.eps}
+          \caption{$E=1.0$かつ$B=0.5$のときの実行結果(3D)}
+          \label{b05e1}
+          \end{figure}
+
+        \begin{figure}[H]
+          \centering
+          \includegraphics[scale=0.5]{b05e1xyz.eps}
+          \caption{$E=1.0$かつ$B=0.5$のときの実行結果(成分ごと)}
+          \label{b05e1xyz}
+          \end{figure}
+
+          z方向の運動について考察する.式(\ref{ef})からz方向の運動は簡単に解くことができる.
+          式(\ref{zz})に式(\ref{ef})からz方向の運動を解いたときの結果を示す.
+          式(\ref{ef})からz方向の運動は二次関数であることがわかる.シミュレーション結果(図\ref{b2e1}～図\ref{b05e1xyz})
+          を確認すると,z方向の運動は確かに二次関数であることがわかる.理論値と計算値が一致していることも確認する.
+          図\ref{b05e1th}に式(\ref{ef})から$E=1.0$かつ$B=0.5$のときの,z方向の理論値を計算してプロットしたグラフを示す.
+          図\ref{b05e1th}から理論値と計算値は目視ではすべて一致していることが読み取れる.
+
+          \begin{eqnarray}
+              \frac{dv_z}{dt} = \frac{q}{m}E_z \\
+              v_z = \frac{q}{m}E_z t \\
+              Z = \frac{q E_z}{2m}t^2 \label{zz}
+          \end{eqnarray}
+
+          \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.7]{b05e1th.eps}
+            \caption{理論値と計算値が一致することの確認}
+            \label{b05e1th}
+            \end{figure}
 
         \begin{thebibliography}{9}
-          \bibitem{NNCT}  国立高専機構長野高専,\url{http://www.nagano-nct.ac.jp/} ,閲覧日2020年8月5日
+          \bibitem{cu} 服部 憲司,"例題と演習で学ぶ 続・電気回路",森北出版株式会社,2017 
           \end{thebibliography}
 \end{document}
 

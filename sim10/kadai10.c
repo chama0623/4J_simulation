@@ -7,7 +7,7 @@
 #define M 1.0
 #define Q 1.0
 #define B0 2.0
-#define E 2.0
+#define E 1.0
 #define X0 0.1
 #define Y0 0.0
 #define V0X 0.0
@@ -15,8 +15,8 @@
 #define Z0 0.0
 #define V0Z 0.0
 
-#define H 0.01
-#define MAX_STEP 1000
+#define H 0.001
+#define MAX_STEP 10000
 
 double velocity(double v){
     return Q/M*B0*v;
