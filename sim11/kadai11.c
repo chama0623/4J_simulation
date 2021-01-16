@@ -1,20 +1,13 @@
 #include<stdio.h>
-#define N 3
+#define N 4
 
-double x[N]={0,0,0};
+double x[N]={0,0,0,0};
 
-double A[N][N]={{2,2,6},
-                {4,5,13},
-                {5,8,24}};
-double b[N]={24,52,93};
-
-
-/*
-double A[N][N] = {{1,-2,3},
-                  {2,-1,1},
-                  {1,3,-5}};
-double b[N]={5,6,2};
-*/
+double A[N][N]={{1,2,1,5},
+                {8,1,3,1},
+                {1,7,1,1},
+                {1,1,6,1}};
+double b[N]={20.5,14.5,18.5,9.0};
 
 void disp(double A[N][N],double b[N]){
     int i,j;
@@ -35,16 +28,16 @@ void forwardElimination(){
    for(k=0;k<N-1;k++){
         for(i=k+1;i<N;i++){
             m=A[i][k]/A[k][k];
-            printf("m = %lf\n",m);
+            //printf("m = %lf\n",m);
             A[i][k]=0;
             for(j=k+1;j<N;j++){
                 A[i][j] = A[i][j]-A[k][j]*m;
-                printf("A[%d][%d] = %lf\n",i,j,A[i][j]);
+                //printf("A[%d][%d] = %lf\n",i,j,A[i][j]);
             }
             b[i]=b[i] -b[k]*m;
-            printf("b[%d] = %lf\n\n",i,b[i]);
+            //printf("b[%d] = %lf\n\n",i,b[i]);
         }
-        disp(A,b); 
+        //disp(A,b); 
     }  
 }
 void dispAns(){
@@ -67,11 +60,15 @@ void backwordSubstitution(void){
     }
 }
 
-int main(void){
+void gaussElimination(void){
     disp(A,b);
     forwardElimination();
     disp(A,b);  
     backwordSubstitution();
     dispAns(); 
+}
+
+int main(void){
+    gaussElimination();
     return 0;
 }

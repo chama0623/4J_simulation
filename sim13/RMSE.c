@@ -1,9 +1,9 @@
 #include<stdio.h>
 #include<math.h>
-#define N 10
+#define N 4
 
-double X[N] = {1,3,5,7,9,11,14,16,19,22};
-double Y[N] = {7,13,16,18,27,29,34,39,41,47};
+double X[N] = {1,2,3,4};
+double Y[N] = {0,1,2,4};
 
 
 void RMSE(void){

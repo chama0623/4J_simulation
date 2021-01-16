@@ -9,14 +9,6 @@ double A[N][N]={{2,4,2},
                 {4,6,2}};
 double b[N]={6,9,8};
 
-
-/*
-double A[N][N] = {{1,-2,3},
-                  {2,-1,1},
-                  {1,3,-5}};
-double b[N]={5,6,2};
-*/
-
 void disp(){
     int i,j;
     printf("--------------------\n");
@@ -62,19 +54,15 @@ void forwardElimination(int isPivoting){
    for(k=0;k<N-1;k++){
         for(i=k+1;i<N;i++){
             if(isPivoting){
-                //printf("pivot = %d\n",pivoting(i));
                 pivot = pivoting(i);
                 changeindex(i,pivot);
             }
             m=A[i][k]/A[k][k];
-            //printf("m = %lf\n",m);
             A[i][k]=0;
             for(j=k+1;j<N;j++){
                 A[i][j] = A[i][j]-A[k][j]*m;
-                //printf("A[%d][%d] = %lf\n",i,j,A[i][j]);
             }
             b[i]=b[i] -b[k]*m;
-            //printf("b[%d] = %lf\n\n",i,b[i]);
         }
     }  
 }
@@ -98,7 +86,7 @@ void backwordSubstitution(void){
 }
 
 int main(void){
-    int isPivoting=1;
+    int isPivoting=0;
     // 入力行列の表示
     printf("\nisPivoting = %d\n",isPivoting);
     printf("Init Array A and Vector b\n");
