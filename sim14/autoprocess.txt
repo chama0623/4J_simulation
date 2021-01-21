@@ -1,0 +1,184 @@
+rm result.csv
+touch result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=1000
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=1100
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=1200
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=1300
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=1400
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=1500
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=1600
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=1700
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=1800
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=1900
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=2000
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=2100
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=2200
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=2300
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=2400
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=2500
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=2600
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=2700
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=2800
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=2900
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=3000
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=3100
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=3200
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=3300
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=3400
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=3500
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=3600
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=3700
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=3800
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=3900
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=4000
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=4100
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=4200
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=4300
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=4400
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=4500
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=4600
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=4700
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=4800
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=4900
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=5000
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=5100
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=5200
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=5300
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=5400
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=5500
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=5600
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=5700
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=5800
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=5900
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=6000
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=6100
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=6200
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=6300
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=6400
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=6500
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=6600
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=6700
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=6800
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=6900
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=7000
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=7100
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=7200
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=7300
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=7400
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=7500
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=7600
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=7700
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=7800
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=7900
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=8000
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=8100
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=8200
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=8300
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=8400
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=8500
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=8600
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=8700
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=8800
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=8900
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=9000
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=9100
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=9200
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=9300
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=9400
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=9500
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=9600
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=9700
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=9800
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=9900
+./randomwalk.exe >> result.csv
+gcc -o randomwalk.exe randomwalk.c -DN=10000
+./randomwalk.exe >> result.csv
