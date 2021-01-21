@@ -47,7 +47,7 @@
 }
 
 \title{第11回～第15回}
-\date{提出日　2021年1月16日}
+\date{提出日　2021年2月5日}
 \department{組番号　408}
 \id{17406}
 \author{金澤雄大}
@@ -804,22 +804,162 @@ y = 1.020130 +0.066805 x1 -0.080830 x2
       \end{lstlisting}
 
       \section{課題14}
-      本章では課題13のプログラムおよび実行結果について述べる.
+      本章では課題14のプログラム,実行結果および考察について述べる.
       \subsection{プログラム}
-      \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=,caption=]
+      リスト\ref{kadai14}に課題14のコードを示す.リスト\ref{kadai14}のコードは
+      コンパイル時に「gcc -o kadai14.exe kadai14.c -DN=1000」という風にランダムウォークの
+      ステップ数を指定することができる.「-DN=1000」のとき,1000ステップのランダムウォークをTRIAL回
+      実行する.実行結果では,結果を課題13bのプログラムに入力して,一次近似を行っている.
+      \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=kadai14,caption=課題14のコード]
+#include<stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+//#define ALLSTEP
+#define TRIAL 30
+//#define N 1000
+
+int randomWalk(int n,double p,int L){
+    int S=0;
+    double E,V,rnd;
+    int i;
+    #ifdef ALLSTEP
+        //printf("%d,%d\n",0,S);
+    #endif
+    for(i=0;i<n;i++){
+        rnd = 1 + (rand()%100);
+        rnd/=100;
+        if(rnd<=p){
+            S+=L;
+        }else{
+            S-=L;
+        }
+        #ifdef ALLSTEP
+            //printf("%d,%d\n",i+1,S);
+        #endif
+    }
+    return S;
+}
+
+int main(void){
+    int i,j,r;
+    double p=0.5;
+    int L=1;
+    double S1,S2,V,Vmean;
+    srand((unsigned) time(NULL));
+    Vmean=0;
+    for(i=0;i<TRIAL;i++){
+        S1=0;
+        S2=0;
+        #ifdef ALLSTEP
+        printf("\n%d回目の試行\nr(%d) = ",i+1,N);
+        #endif
+        for(j=0;j<TRIAL;j++){
+            r=randomWalk(N,p,L);
+            #ifdef ALLSTEP
+            printf("%d, ",r);
+            #endif
+            S1+=r;
+            S2+=r*r;
+        }
+        #ifdef ALLSTEP
+        printf("\n");
+        #endif
+
+        V=(S2/TRIAL) - (S1/TRIAL)*(S1/TRIAL);
+        Vmean+=V;
+        #ifdef ALLSTEP
+        printf("V = %lf\n",V);
+        printf("----------\n");
+        #endif  
+    }
+    Vmean/=(TRIAL);
+    //printf("Vmean = %lf\n",Vmean);  
+    printf("%d,%lf\n",N,Vmean);  
+    return 0;
+}
       \end{lstlisting}
-      \subsection{実行結果}
 
-      \section{課題15}
-      本章では課題15のプログラムおよび実行結果について述べる.
-      \subsection{プログラム}
-      \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=,caption=]
-      \end{lstlisting}
-      \subsection{実行結果}
+      \subsection{実行結果と考察}
+      リスト\ref{kadai14}のプログラムを次の条件で実行し,特徴を考察する.
+      ステップ数Nは1000から5000の範囲で100おきに実行する.
+      \begin{enumerate}
+        \item p=0.5,TRIAL=5
+        \item p=0.5,TRIAL=30
+        \item p=0.7,TRIAL=30
+      \end{enumerate}
 
+      まず,p=0.5,TRIAL=5の条件で実行する.図\ref{t5}にp=0.5,TRIAL=5の条件での実行結果を示す.
+      図\ref{t5}から,ステップ数Nと分散Vには,正の相関があることが読み取れる.
 
+      \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.6]{t5.eps}
+        \caption{p=0.5,TRIAL=5のときの実行結果}
+        \label{t5}
+        \end{figure}
+
+        次にTRIAL=30にして実行する.図\ref{t30}にp=0.5,TRIAL=30の条件での実行結果を示す.図\ref{t30}から,
+        ステップ数Nと分散Vに強い正の相関があることが読み取れる.さらに,回帰直線がおおよそ$V=N$であることが読み取れる.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.6]{t30.eps}
+            \caption{p=0.5,TRIAL=30のときの実行結果}
+            \label{t30}
+            \end{figure}       
+
+        最後にp=0.7,TRIAL=30の条件で実行する.図\ref{p07}にp=0.7,TRIAL=30の条件での実行結果を示す.図\ref{p07}から,
+        単回帰係数が$0.83$と,p=0.5と比較して傾きが緩やかになっていることが読み取れる.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.6]{p07.eps}
+            \caption{p=0.7,TRIAL=30のときの実行結果}
+            \label{p07}
+            \end{figure}   
+
+        分散と$N$,$p$の関係について考察する. $S_1,S_2,\dots S_n$,i.i.d(独立同分布)とし,$P(S_i=1)=p,P(S_i=-1)=1-p$とする($L=1$に限定して考える).
+        $n \geq 1$に対して確率変数$X_n$を式(\ref{xn})のように定義する.式(\ref{xn})のように定義すると$X_n$は時刻$n$における位置を表している.
+        また,この運動がランダムウォークである.
+
+        \begin{eqnarray}
+          X_n = S_1 + S_2 + \dots + S_n \label{xn}
+        \end{eqnarray}
+
+        $E[X_n]$および$V[X_n]$を計算するために,時刻$n$に位置が$k$である確率$P(X_n = k)$を求める必要がある.確率$P(X_n = k)$を計算するために$W_n$,$L_n$
+        という2つの変数を定義する. $S_i=1$なる$i$の個数$W_n$,$S_i=-1$なるiの個数$L_n$とする.このとき,$W_n$は二項分布$Bin(n,p)$に従う. $W_n$,$L_n$を用いると
+        $X_n=W_n-L_n$,$n=W_n+L_n$と表せる.これより$X_n+n=2W_n$と表せる.したがって,$X_n=k$は$W_n=\frac{k+n}{2}$と表せる.
+        $k+n$が奇数のとき,$\frac{k+n}{2}$は整数にならない.このため,$_n C _\frac{k+n}{2}$は計算できないから,$P(X_n =k)=0$となる.$k+n$が偶数のときは
+        $P(X_n=k)$は式(\ref{px})になる.
+        \begin{eqnarray}
+            P(X_n=k) = P\left( W_n = \frac{n+k}{2} \right) = {}_n C _{\frac{n+k}{2}} p^{\frac{n+k}{2}} (1-p)^{\frac{n-k}{2}} \label{px}
+          \end{eqnarray}
+
+          式(\ref{px})は二項分布だから期待値と分散は簡単に計算できる. $X_n$の期待値および分散は式(\ref{ex})および式(\ref{vx})になる.
+          \begin{eqnarray}
+            E[X_n] &=& E[2W_n -n] = 2np-n = n(2p-1) \label{ex} \\
+            V[X_n] &=& V[2W_n -n] = 4V[W_n] = 4np(1-p) \label{vx}
+          \end{eqnarray}
+
+          $p=0.5$のとき,期待値と分散を計算してみる.式(\ref{ex})および式(\ref{vx})に$p=0.5$を代入すると式(\ref{ex05})および式(\ref{vx05})のようになる.
+          式(\ref{vx05})は,数値計算で求めた分散$V[\Delta x^2(N)]=N$になることを示している.図\ref{t30}で示した回帰係数がおおよそ1になっていること
+          から,$p=0.5$のときの分散$V[\Delta x^2(N)]=N$という理論と一致していることがわかる.
+          \begin{eqnarray}
+            E[X_n] &=&  n(2p-1) = 0 \label{ex05} \\
+            V[X_n] &=& 4np(1-p) = n \label{vx05}
+          \end{eqnarray}
+        
+          $p=0.7$のとき,期待値と分散を計算してみる.式(\ref{ex})および式(\ref{vx})に$p=0.7$を代入すると式(\ref{ex07})および式(\ref{vx07})のようになる.
+          式(\ref{vx07})は,数値計算で求めた分散$V[\Delta x^2(N)]=0.84N$になることを示している.図\ref{p07}で示した回帰係数がおおよそ0.83になっていること
+          から,$p=0.7$のときの分散$V[\Delta x^2(N)]=0.84N$という理論と一致していることがわかる.
+          \begin{eqnarray}
+            E[X_n] &=&  n(2p-1) = 0.4n \label{ex07} \\
+            V[X_n] &=& 4np(1-p) = 0.84n \label{vx07}
+          \end{eqnarray}
+         
         \begin{thebibliography}{9}
-          \bibitem{NNCT}  国立高専機構長野高専,\url{http://www.nagano-nct.ac.jp/} ,閲覧日2020年8月5日
+            \bibitem{kiso}  久保田達也,"現代数理統計学の基礎",共立出版社,2020
           \end{thebibliography}
 \end{document}
 

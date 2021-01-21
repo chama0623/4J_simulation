@@ -30,7 +30,7 @@ int randomWalk(int n,double p,int L){
 
 int main(void){
     int i,j,r;
-    double p=0.5;
+    double p=0.7;
     int L=1;
     double S1,S2,V,Vmean;
     srand((unsigned) time(NULL));
