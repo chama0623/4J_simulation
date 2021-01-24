@@ -793,7 +793,7 @@ int main(void){
         \label{soe}
       \end{equation}
       $v=\frac{dx}{dt}$とおくと,式(\ref{soe})は式(\ref{bane})で表せる.また,式(\ref{bane})のときの初期条件は,$y(0)=10,v(0)=0$となる.
-      式(\ref{bane})は連立方程式微分方程式であるから,課題6のプログラムを改変すれば数値計算を行うことができる.
+      式(\ref{bane})は連立微分方程式であるから,課題6のプログラムを改変すれば数値計算を行うことができる.
       \begin{eqnarray}
         \begin{cases}
           v = \frac{dx}{dt} & \\
@@ -867,7 +867,7 @@ int main(void){
          &=& 2\pi \sqrt{\frac{m}{k}} \label{shukikm}
       \end{eqnarray}
 
-      さらに,式(\ref{tansindo2})の微分方程式は簡単に解を求めることができる.解を求める方法については省略するが,式(\ref{tansindo2})を
+      さらに,式(\ref{tansindo2})の微分方程式は簡単に解を求められる.解法については省略するが,式(\ref{tansindo2})を
       解くと式(\ref{tansindo3})の一般解が得られる($C_1,C_2$は任意定数).初期条件および$m=1$という指定を式(\ref{tansindo3})に
       代入すると, $l=0$のときの位置$x$は式(\ref{tansindo4})で表せる.さらに,式(\ref{tansindo4})から速度$v$は式(\ref{tansindo5})
       で表せる.
@@ -1066,7 +1066,7 @@ int main(int argc,char *argv[]){
         \item $R=2\sqrt{\frac{L}{C}}$付近での動作を確認する.
       \end{enumerate}
         
-        まず,$R=0$のときに単振動になることを確認する. $R=0$のとき式(\ref{RLC})は式\ref{LC}となる.
+        まず,$R=0$のときに単振動になることを確認する. $R=0$のとき式(\ref{RLC})は式(\ref{LC})となる.
         これは課題7の式(\ref{tansindo1})と同じ形の式である.これよりシミュレーションの結果は
         $Q(t)$が余弦関数,$I(t)$が正弦関数になるはずである.
         
@@ -1197,13 +1197,13 @@ int main(int argc,char *argv[]){
       \subsection{課題内容}
       課題9および課題10では,電場および磁場中を運動する電荷の運動のシミュレーションを行う.
       電荷$q$の速度\mbox{\boldmath $v$},電場\mbox{\boldmath $E$},磁場\mbox{\boldmath $B$}とすると電荷が受ける力\mbox{\boldmath $F$}
-      は式\ref{uf}で与えられる.
+      は式(\ref{uf})で与えられる.
       \begin{eqnarray}
         \mbox{\boldmath $F$} = q(\mbox{\boldmath $E$}+\mbox{\boldmath $v$} \times \mbox{\boldmath $B$}) \label{uf}
       \end{eqnarray}
 
-      まず課題9では\mbox{\boldmath $E$}$=0$かつ,磁場\mbox{\boldmath $E$}$=(0,0,B_0)$の場合について考える.
-      磁場\mbox{\boldmath $E$}$=(0,0,B_0)$の意味は大きさが$B_0$で成分が
+      まず課題9では\mbox{\boldmath $E$}$=0$かつ,磁場\mbox{\boldmath $B$}$=(0,0,B_0)$の場合について考える.
+      磁場\mbox{\boldmath $B$}$=(0,0,B_0)$の意味は大きさが$B_0$で成分が
       z成分のみであることを表している. \mbox{\boldmath $E$}$=0$のとき,式(\ref{uf})は
       ローレンツの法則と呼ばれ,外積を成分表示に直して計算すると式(\ref{lorentz})のようになる.
       \begin{eqnarray}

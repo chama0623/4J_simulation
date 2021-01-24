@@ -1,0 +1,400 @@
+./kadai142.exe > ./r2-5000/r2-5000-1.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-2.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-3.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-4.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-5.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-6.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-7.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-8.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-9.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-10.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-11.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-12.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-13.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-14.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-15.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-16.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-17.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-18.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-19.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-20.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-21.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-22.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-23.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-24.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-25.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-26.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-27.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-28.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-29.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-30.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-31.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-32.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-33.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-34.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-35.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-36.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-37.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-38.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-39.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-40.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-41.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-42.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-43.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-44.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-45.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-46.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-47.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-48.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-49.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-50.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-51.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-52.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-53.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-54.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-55.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-56.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-57.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-58.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-59.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-60.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-61.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-62.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-63.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-64.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-65.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-66.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-67.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-68.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-69.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-70.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-71.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-72.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-73.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-74.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-75.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-76.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-77.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-78.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-79.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-80.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-81.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-82.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-83.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-84.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-85.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-86.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-87.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-88.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-89.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-90.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-91.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-92.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-93.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-94.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-95.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-96.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-97.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-98.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-99.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-100.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-101.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-102.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-103.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-104.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-105.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-106.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-107.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-108.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-109.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-110.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-111.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-112.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-113.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-114.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-115.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-116.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-117.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-118.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-119.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-120.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-121.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-122.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-123.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-124.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-125.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-126.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-127.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-128.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-129.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-130.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-131.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-132.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-133.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-134.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-135.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-136.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-137.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-138.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-139.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-140.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-141.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-142.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-143.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-144.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-145.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-146.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-147.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-148.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-149.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-150.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-151.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-152.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-153.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-154.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-155.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-156.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-157.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-158.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-159.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-160.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-161.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-162.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-163.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-164.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-165.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-166.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-167.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-168.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-169.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-170.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-171.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-172.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-173.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-174.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-175.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-176.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-177.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-178.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-179.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-180.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-181.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-182.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-183.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-184.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-185.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-186.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-187.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-188.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-189.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-190.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-191.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-192.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-193.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-194.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-195.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-196.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-197.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-198.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-199.csv
+sleep 2
+./kadai142.exe > ./r2-5000/r2-5000-200.csv
+sleep 2

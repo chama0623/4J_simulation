@@ -10,6 +10,7 @@ for i in l:
     print("./randomwalk.exe >> result.csv")
 """
 
+"""
 df = pd.read_csv("./result.csv",header=None)
 df = df.rename(columns={0:"N",1:"result"})
 print(len(df))
@@ -19,3 +20,7 @@ print("\n")
 for i in range(len(df)):
     print(str(round(df.loc[i,"result"],5))+",",end='')
 print("\n")
+"""
+
+for i in range(200):
+    print("sleep 1m;./kadai142.exe > r2-"+str(i+1)+".csv")

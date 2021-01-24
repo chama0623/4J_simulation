@@ -735,7 +735,7 @@ int main(void){
 
       \subsubsection{課題13のプログラムの実行結果}
       リスト\ref{kadai13r}に課題13のコードの実行結果を示す.リスト\ref{kadai13r}から回帰方程式は$-1.5+1.3x$であることがわかる読み取れる.
-      これは「わかりやすい数値計算入門」!の例題の答えと一致しているから,作成したプログラムが正しいことが確認できた.
+      これは「わかりやすい数値計算入門」\cite{wakari}の例題の答えと一致しているから,作成したプログラムが正しいことが確認できた.
       \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=kadai13r,caption=課題13のプログラムの実行結果]
 説明変数の平均 2.500000
 説明変数の分散 1.250000
@@ -958,7 +958,88 @@ int main(void){
             V[X_n] &=& 4np(1-p) = 0.84n \label{vx07}
           \end{eqnarray}
          
+          \section{課題14-2}
+          本章では,課題14-2のプログラムおよび実行結果と考察について述べる.
+          \subsection{プログラム}
+          リスト\ref{kadai142}に課題14-2のコードを示す.リスト\ref{kadai142}のコードはNステップの2次元ランダムウォークを
+          1回行うコードであり,複数回呼び出すためにマクロを組んでいる.
+          \begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single,label=kadai142,caption=課題14-2のコード]
+#include<stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <math.h>
+
+// 試行回数n
+// 移動距離 L
+void randomWalk2(int n,int L){
+    double X=0;
+    double Y=0;
+    double rnd;
+    int i;
+    printf("%d,%lf,%lf\n",0,0.0,0.0);
+    for(i=0;i<n;i++){
+        // make random[0,1]
+        rnd = (double)rand()/RAND_MAX;
+        // make random[0,2pi]
+        rnd*=2*M_PI;
+        X+=L*cos(rnd);
+        Y+=L*sin(rnd);
+        printf("%d,%lf,%lf\n",i+1,X,Y);
+    }
+}
+
+int main(void){
+    srand((unsigned) time(NULL));
+    randomWalk2(5000,1);
+    return 0;
+}
+          \end{lstlisting}
+
+          \subsection{実行結果と考察}
+          リスト\ref{kadai142}のコードをステップ数が100,1000,5000のときについて,それぞれ200回実行した.図\ref{r100}～図\ref{r5000}
+          に実行結果を示す.図\ref{r100}はステップ数が100,図\ref{r1000}は1000,図\ref{r5000}は5000のときのグラフである.
+          図\ref{r100}～図\ref{r5000}から,ステップ数を大きくすると移動距離の半径が多くなる傾向が読み取れる.
+
+          \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.6]{r2-100.eps}
+            \caption{ステップ数が100のときの実行結果}
+            \label{r100}
+            \end{figure}   
+        
+            \begin{figure}[H]
+                \centering
+                \includegraphics[scale=0.6]{r2-1000.eps}
+                \caption{ステップ数が1000のときの実行結果}
+                \label{r1000}
+                \end{figure}   
+        
+            \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.6]{r2-5000.eps}
+            \caption{ステップ数が5000のときの実行結果}
+            \label{r5000}
+            \end{figure}   
+            
+            ステップ数を大きくしたときの半径について考察する.表\ref{meanvar}にNステップ経過したときの粒子の原点$(0,0)$
+            からの距離の平均および標準偏差を示す.表\ref{meanvar}から,Nステップ数後の原点からの距離はおおよそ平均N,標準偏差N
+            であることが読み取れる.このことから,2次元ランダムウォークの場合も分散はNになると考えられる.
+            
+            \begin{table}[H]
+            \caption{Nステップ後の距離の平均と標準偏差}
+            \label{meanvar}
+            \begin{center}
+            \begin{tabular}{c|c|c}\hline
+                ステップ数 & 平均 & 標準偏差 \\ \hline \hline
+                100 & 103.62 & 101.18 \\
+                1000 & 964.67 & 855.02 \\
+                5000 & 4653.74 & 4475.67 \\ \hline
+            \end{tabular}
+            \end{center}
+            \end{table}
+
         \begin{thebibliography}{9}
+            \bibitem{wakari}  栗原正仁,"わかりやすい数値計算入門",ムイスリ出版,2018
             \bibitem{kiso}  久保田達也,"現代数理統計学の基礎",共立出版社,2020
           \end{thebibliography}
 \end{document}
